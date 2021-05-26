@@ -1,0 +1,17 @@
+{
+  "targets": {
+    "mapeamento-cultural": {
+      "hosting": {
+        "admin": [
+          "mapeamento-cultural-admin"
+        ],
+        "app": [
+          "mepeamento-cultural-app"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "mapeamento-cultural"
+  }
+}

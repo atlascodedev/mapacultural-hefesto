@@ -8,8 +8,8 @@ import EntryViewActionButtonMain from "../../components/DataCreation/EntryView/E
 
 const generateEntriesDataGridColumns = (
   collectionID: string
-): DatagridColumns[] => {
-  let entriesDataGridColumns: DatagridColumns[] = [];
+): DatagridColumns<any>[] => {
+  let entriesDataGridColumns: DatagridColumns<any>[] = [];
 
   const activeCollection: DataCreationItem[] = collections.filter(
     (creationItem: DataCreationItem, index: number) => {
@@ -21,7 +21,7 @@ const generateEntriesDataGridColumns = (
     activeCollection[0].fields;
 
   for (const field of activeCollectionFields) {
-    let dataGridColumnItemInternal: DatagridColumns;
+    let dataGridColumnItemInternal: DatagridColumns<any>;
 
     dataGridColumnItemInternal = {
       field: field.name,

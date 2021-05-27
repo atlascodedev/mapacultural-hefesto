@@ -76,7 +76,7 @@ interface DatagridEntriesProps {
   updateFn: (...args: any[]) => void;
   data: Array<any>;
   collectionName: string;
-  columns: DatagridColumns[];
+  columns: DatagridColumns<any>[];
   collectionRef: string;
   allowDeleteMany?: boolean;
   allowUpdateMany?: boolean;

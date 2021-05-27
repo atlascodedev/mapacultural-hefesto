@@ -70,7 +70,7 @@ const tableIcons: any = {
 interface Props {
   collectionName?: string;
   collectionRef: string;
-  columns: DatagridColumns[];
+  columns: DatagridColumns<any>[];
 }
 
 const MaterialTableCustom = ({

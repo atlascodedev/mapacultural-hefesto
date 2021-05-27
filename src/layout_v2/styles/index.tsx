@@ -6,14 +6,17 @@ import IconComponent from "../../components/Util/IconComponent";
 import { IconTypes } from "../../dictionaries/types";
 import { Fade, SvgIcon, SvgIconTypeMap, Tooltip } from "@material-ui/core";
 import {
+  AssignmentInd,
   Autorenew,
   BugReport,
+  EventAvailable,
   Help,
   MenuBook,
   MenuRounded,
   Notifications,
   Person,
   Phone,
+  Room,
   Settings,
   Update,
 } from "@material-ui/icons";
@@ -538,18 +541,26 @@ export const AppLayoutRoot = ({
             />
           );
         })}
-        <SidebarItemLayout
-          actionFn={() => navigate(`/${basePath}/${dashboardPath}/log`)}
-          label="Log administrativo"
-          icon={MenuBook}
-          route="log"
-        />
 
         <SidebarItemLayout
-          actionFn={() => navigate(`/${basePath}/${dashboardPath}/mensagens`)}
-          label="Mensagens"
-          icon={Phone}
-          route="mensagens"
+          actionFn={() => navigate(`/${basePath}/${dashboardPath}/eventos`)}
+          label="Eventos"
+          icon={EventAvailable}
+          route="eventos"
+        />
+        <SidebarItemLayout
+          actionFn={() => navigate(`/${basePath}/${dashboardPath}/agentes`)}
+          label="Agentes"
+          icon={AssignmentInd}
+          route="agentes"
+        />
+        <SidebarItemLayout
+          actionFn={() =>
+            navigate(`/${basePath}/${dashboardPath}/espacos-culturais`)
+          }
+          label="Espaços culturais"
+          icon={Room}
+          route="espacos-culturais"
         />
 
         <div

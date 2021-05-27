@@ -48,9 +48,9 @@ const DataCreationAppbarAnchor = styled.div`
   opacity: 0;
 `;
 
-export interface DatagridColumns {
+export interface DatagridColumns<T> {
   title: string;
-  field: string;
+  field: keyof T;
   hidden?: boolean;
   render?: (...args: any[]) => any;
 }
@@ -74,7 +74,7 @@ const DataCreation = ({
 
   let entriesColumns = generateEntriesDataGridColumns(activeCollection.itemID);
 
-  let categoriesColumns: DatagridColumns[] = [
+  let categoriesColumns: DatagridColumns<any>[] = [
     { title: "uuid", field: "uuid", hidden: true },
     { title: "root", field: "root", hidden: true },
     { title: "Nome da categoria", field: "label" },

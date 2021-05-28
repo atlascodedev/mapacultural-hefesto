@@ -3,7 +3,7 @@
     "mapeamento-cultural": {
       "hosting": {
         "admin": [
-          "mapeamento-cultural"
+          "mapeamento-cultural-admin"
         ]
       }
     }

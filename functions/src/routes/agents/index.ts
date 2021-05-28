@@ -1,6 +1,6 @@
 import express, { Router } from "express";
 
-import { createAgent } from "../../controllers/agents";
+import { createAgent, getAgents } from "../../controllers/agents";
 const cors = require("cors");
 
 const agentsRouter: Router = express.Router();
@@ -9,6 +9,6 @@ agentsRouter.options("*", cors());
 
 agentsRouter.post("", cors(), createAgent);
 
-agentsRouter.get("", cors(), () => console.log("yolo"));
+agentsRouter.get("", cors(), getAgents);
 
 export default agentsRouter;

@@ -6,6 +6,7 @@ import staticBuildRouter from "./routes/staticBuild";
 import messagingRouter from "./routes/messaging";
 import logRouter from "./routes/log";
 import agentsRouter from "./routes/agents";
+import spaceRouter from "./routes/spaces";
 
 const app = express();
 
@@ -20,6 +21,8 @@ app.use("/messaging", messagingRouter);
 app.use("/logging", logRouter);
 
 app.use("/agents", agentsRouter);
+
+app.use("/spaces", spaceRouter);
 
 export const api = functions.https.onRequest(app);
 

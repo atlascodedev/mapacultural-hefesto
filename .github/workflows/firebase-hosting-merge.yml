@@ -12,7 +12,7 @@ jobs:
     if: ${{contains(github.event.head_commit.message, '[deploy]')}}
     steps:
       - uses: actions/checkout@v2
-      - run: npm ci && npm run build
+      - run: npx pnpm install && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"

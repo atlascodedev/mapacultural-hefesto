@@ -3,15 +3,9 @@
     "mapeamento-cultural": {
       "hosting": {
         "admin": [
-          "mapeamento-cultural-admin"
-        ],
-        "app": [
-          "mepeamento-cultural-app"
+          "mapeamento-cultural"
         ]
       }
     }
-  },
-  "projects": {
-    "default": "mapeamento-cultural"
   }
 }

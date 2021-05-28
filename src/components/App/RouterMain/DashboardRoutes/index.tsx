@@ -16,8 +16,11 @@ import ProtectedRoute from "../../../Util/ProtectedRoute";
 import MaterialTableCustom from "../../../Util/MaterialTable";
 import {
   agentColumns,
+  AGENT_COLLECTION_REF,
   eventColumns,
+  EVENT_COLLECTION_REF,
   spaceColumns,
+  SPACE_COLLECTON_REF,
 } from "../../../../constants";
 
 interface Props extends RouteComponentProps {}
@@ -52,7 +55,7 @@ const DashboardRoutes = ({ location, navigate, path, uri }: Props) => {
               <div style={{ padding: "3%", paddingTop: "8%" }}>
                 <MaterialTableCustom
                   collectionName="Agente"
-                  collectionRef="log"
+                  collectionRef={AGENT_COLLECTION_REF}
                   columns={agentColumns}
                 />
               </div>
@@ -64,7 +67,7 @@ const DashboardRoutes = ({ location, navigate, path, uri }: Props) => {
             component={
               <div style={{ padding: "3%", paddingTop: "8%" }}>
                 <MaterialTableCustom
-                  collectionRef="event"
+                  collectionRef={EVENT_COLLECTION_REF}
                   collectionName="Evento"
                   columns={eventColumns}
                 />
@@ -77,7 +80,7 @@ const DashboardRoutes = ({ location, navigate, path, uri }: Props) => {
             component={
               <div style={{ padding: "3%", paddingTop: "8%" }}>
                 <MaterialTableCustom
-                  collectionRef="spaces"
+                  collectionRef={SPACE_COLLECTON_REF}
                   collectionName="Espaço"
                   columns={spaceColumns}
                 />

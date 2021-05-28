@@ -25,7 +25,7 @@ export const createSpace = async (
       lat: lat,
       lng: lng,
       status: "ANÁLISE",
-    });
+    } as ICulturalSpaceModel & { lat: string; lng: string; status: string });
 
     res.status(200).send("Cultural space created successfully");
   } catch (error) {

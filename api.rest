@@ -1,31 +1,5 @@
-POST http://127.0.0.1:5001/mapeamento-cultural/us-central1/api/agents 
-Content-Type: application/json
+GET https://us-central1-gnosis-webapp.cloudfunctions.net/api/collections/entries/coursesNew
 
-{   
-    "agentType": "Pessoa física",
-    "registrationEmail": "alex.xande10@gmail.com",
-    "publicEmail": "alex.xande10@gmail.com",
-    "fullName": "Aleksander Mirowsky",
-    "publicName": "Aleks Mirow",
-    "birthday_or_founding": "25/02/1996",
-    "cpf_or_cpnj": "01093868090",
-    "gender": "Homem",
-    "race": "Branco",
-    "professionalRecord": "Random",
-    "cep": "04474120",
-    "street": "Avenida New york",
-    "state": "Rio Grande do Sul",
-    "city": "Porto Alegre",
-    "neighborhood": "Auxiliadora",
-    "streetNumber": "506",
-    "complement": "no",
-    "website": "https://atlascode.dev",
-    "facebook": "https://facebook.com",
-    "instagram": "https://instagram.com",
-    "phoneNumber": "5551984773704",
-    "publicPhoneNumber": "55334341414",
-    "portfolio": "https://youtube.com/watch?search=1235",
-    "categories": ["1", "2", "ABC", "512"]
-}
+
 
 

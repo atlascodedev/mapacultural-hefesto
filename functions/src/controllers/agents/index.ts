@@ -31,7 +31,7 @@ export const createAgent = async (
 
     res.status(200).send("Agent created successfully");
   } catch (error) {
-    return res.status(400).json({ error: error });
+    return res.status(500).json({ error: error });
   }
 };
 

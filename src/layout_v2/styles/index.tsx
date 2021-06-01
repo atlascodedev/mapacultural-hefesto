@@ -573,13 +573,13 @@ export const AppLayoutRoot = ({
               actionFn={() => dispatch(checkAndUpdateExpiredCards() as any)}
               icon={Update}
               label="Checar cartas vencidas"
-            />
+            /> */}
 
             <SidebarItemLayout
               actionFn={handleRepositoryDispatchDialog}
               icon={Autorenew}
               label="Atualizar website"
-            /> */}
+            />
             <SidebarItemLayout disabled icon={Settings} label="Configurações" />
 
             <SidebarItemLayout

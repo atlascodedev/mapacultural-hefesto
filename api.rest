@@ -1,4 +1,6 @@
-GET https://us-central1-gnosis-webapp.cloudfunctions.net/api/collections/entries/coursesNew
+
+
+POST https://us-central1-mapeamento-cultural.cloudfunctions.net/api/build/forge
 
 
 

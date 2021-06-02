@@ -1,6 +1,5 @@
 import React from "react";
 import { connect, ConnectedProps } from "react-redux";
-import { RegistrationStatus } from "../../@types/project";
 import { RootState } from "../../redux";
 import { mapDialogClose, mapDialogOpen } from "../../redux/mapDialog/actions";
 import AtlasBackdrop from "../Util/AtlasBackdrop";
@@ -12,11 +11,12 @@ import MapDialogHeader from "./Header";
 
 export interface IMapDialog extends MapDialogReduxProps {}
 
-const MapDialog = ({ closeDialog, openDialog, open }: IMapDialog) => {
-  const [confirmationDialog, setConfirmationDialog] = React.useState<{
-    actionStatus: RegistrationStatus;
-    open: boolean;
-  }>({ actionStatus: "ANÁLISE", open: false });
+const MapDialog = ({ closeDialog, open }: IMapDialog) => {
+  const [approveDialogState, setApproveDialogState] =
+    React.useState<boolean>(false);
+
+  const [refuseDialogState, setRefuseDialogState] =
+    React.useState<boolean>(false);
 
   return (
     <div>
@@ -24,14 +24,30 @@ const MapDialog = ({ closeDialog, openDialog, open }: IMapDialog) => {
         <MapDialogBase>
           <MapDialogHeader closeFn={closeDialog} title="Placeholder Title" />
           <MapDialogActions
-            approveAction={() => console.log("i approve")}
-            refuseAction={() => console.log("i refuse")}
+            approveAction={() => setApproveDialogState(true)}
+            refuseAction={() => setRefuseDialogState(true)}
           />
-          <MapDialogContent>
-            <div style={{ height: "1000px" }}></div>
-          </MapDialogContent>
+          <MapDialogContent></MapDialogContent>
         </MapDialogBase>
       </AtlasBackdrop>
+
+      <MapDialogActionConfirmation
+        submitFn={() => console.log("submit approval")}
+        title={"Aprovar inscrição"}
+        closeFn={() => setApproveDialogState(false)}
+        open={approveDialogState}
+      >
+        <div>holiday</div>
+      </MapDialogActionConfirmation>
+
+      <MapDialogActionConfirmation
+        submitFn={() => console.log("submit denial")}
+        title={"Recusar inscrição"}
+        closeFn={() => setRefuseDialogState(false)}
+        open={refuseDialogState}
+      >
+        <div>holiday</div>
+      </MapDialogActionConfirmation>
     </div>
   );
 };

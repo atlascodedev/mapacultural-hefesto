@@ -79,8 +79,6 @@ export interface Category {
 
 export type DashboardItem = DataCreationItem;
 
-
-
 const partnersCollection: DashboardItem = {
   collectionRef: "partners",
   itemCategory: "creation",
@@ -103,31 +101,7 @@ const partnersCollection: DashboardItem = {
       groupID: "partnerInfo",
       hidden: true,
     },
-    {
-      fieldType: "list",
-      label: "Lista",
-      name: "simpleList",
-      groupID: "partnerInfo",
-      listOptions: {
-        fieldLabel: "Nome do ingrediente",
-        label: "Lista de ingredientes",
-      },
-      hidden: true,
-    },
-    {
-      fieldType: "installment",
-      label: "Another list",
-      name: "installmentList",
-      groupID: "partnerInfo",
-      listOptions: {
-        fieldLabel: "Saldo",
-        label: "notused",
-      },
-      hidden: true,
-    },
   ],
 };
 
-export const collections: Array<DashboardItem> = [
-  partnersCollection,
-];
+export const collections: Array<DashboardItem> = [partnersCollection];

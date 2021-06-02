@@ -8,7 +8,20 @@ import {
   EventFrequencyTypes,
   GenderTypes,
   RaceTypes,
+  TaquaraNeighborhoods,
 } from "./literals";
+
+type BooleanKeys<T> = {
+  [k in keyof T]: T[k] extends boolean ? k : never;
+}[keyof T];
+
+export interface IPartnerCollection {
+  partneName: string;
+  partnerLogo: {
+    imageURL: string;
+    imageDescription: string;
+  };
+}
 
 export interface ICulturalSpacePersonalInfo {
   privateEmail: string;
@@ -19,8 +32,7 @@ export interface ICulturalSpacePersonalInfo {
   culturalSpaceEntry: CulturalSpaceEntranceType;
   culturalSpaceSphere: CulturalSpaceSphereTypes;
   culturalSpaceCapacity: string;
-  openingHours: string;
-  closingHours: string;
+  workingHours: string;
   entryTypes: CulturalSpaceEntryTypes;
   description: string;
   entryFee?: string;
@@ -29,9 +41,7 @@ export interface ICulturalSpacePersonalInfo {
 export interface ICulturalSpaceAddressInfo {
   cep: string;
   street: string;
-  state: string;
-  city: string;
-  neighborhood: string;
+  neighborhood: TaquaraNeighborhoods;
   streetNumber: string;
   complement?: string;
 }
@@ -57,7 +67,7 @@ export type ICulturalSpaceModel = ICulturalSpacePersonalInfo &
   ICulturalSpaceSocials;
 
 export interface IAgentPersonalInfo {
-  agentType: "pessoa_fisica" | "pessoa_juridica";
+  agentType: string;
   registrationEmail: string;
   publicEmail: string;
   fullName: string;
@@ -67,14 +77,13 @@ export interface IAgentPersonalInfo {
   gender: GenderTypes;
   race: RaceTypes;
   professionalRecord: string;
+  description: string;
 }
 
 export interface IAgentAddressInfo {
   cep: string;
   street: string;
-  state: string;
-  city: string;
-  neighborhood: string;
+  neighborhood: TaquaraNeighborhoods;
   streetNumber: string;
   complement?: string;
 }
@@ -89,7 +98,7 @@ export interface IAgentSocialInfo {
 }
 
 export interface IAgentCategories {
-  categories: CulturalCategoryTypes;
+  categories: CulturalCategoryTypes[];
 }
 
 export type IAgentModel = IAgentPersonalInfo &
@@ -102,9 +111,9 @@ export interface IEventPersonalInfo {
   publicEmail?: string;
   eventName: string;
   eventHead: string;
-  openingHours: string;
-  closingHours: string;
+  workingHours: string;
   startingDate: string;
+  endingDate: string;
   eventAgeRestriction: AgeRestrictionTypes;
   eventFrequency: EventFrequencyTypes;
   description: string;
@@ -113,16 +122,14 @@ export interface IEventPersonalInfo {
 }
 
 export interface IEventCategories {
-  categories: CulturalCategoryTypes;
+  categories: CulturalCategoryTypes[];
 }
 
 export interface IEventAddressInfo {
-  eventType: string;
+  eventType: "Físico" | "Online" | "Híbrido";
   cep?: string;
   street?: string;
-  city?: string;
-  state?: string;
-  neighborhood?: string;
+  neighborhood?: TaquaraNeighborhoods;
   streetNumber?: string;
   complement?: string;
 }
@@ -134,25 +141,23 @@ export interface IEventSocialsInfo {
   publicPhone?: string;
 }
 
-export type IEventModel = IEventSocialsInfo &
+export type IEventModel = IEventPersonalInfo &
   IEventCategories &
   IEventAddressInfo &
   IEventSocialsInfo;
 
-export interface IAgentModelAPIData extends IAgentModel {
-  lat: string;
-  long: string;
-  status: any;
+export type RegistrationStatus = "ANÁLISE" | "APROVADO" | "NEGADO";
+
+interface FormInternal {
+  lat: number;
+  lng: number;
+  status: RegistrationStatus;
 }
 
-export interface IEventModelAPIData extends IEventModel {
-  lat: string;
-  long: string;
-  status: any;
-}
+export interface IAgentModelAPIData extends IAgentModel, FormInternal {}
 
-export interface ICulturalSpaceAPIData extends ICulturalSpaceModel {
-  lat: string;
-  long: string;
-  status: any;
-}
+export interface IEventModelAPIData extends IEventModel, FormInternal {}
+
+export interface ICulturalSpaceAPIData
+  extends ICulturalSpaceModel,
+    FormInternal {}

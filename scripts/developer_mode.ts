@@ -2,7 +2,7 @@ import { spawn, SpawnOptions } from "child_process";
 import { resolve, join } from "path";
 import { tmpdir } from "os";
 import * as chalk from "chalk";
-import { ChildProcess } from "node:child_process";
+import { ChildProcess } from "child_process";
 
 const log = console.log;
 

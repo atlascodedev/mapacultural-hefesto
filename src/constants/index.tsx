@@ -19,6 +19,8 @@ export const axiosInstance = Axios.create({
 export const agentColumns: DatagridColumns<
   IAgentModelAPIData & { view: any }
 >[] = [
+  { field: "lat", title: "Latitude", hidden: true },
+  { field: "lng", title: "Longitude", hidden: true },
   { field: "registrationEmail", title: "E-mail de cadastro" },
   { field: "publicEmail", title: "E-mail público" },
   {
@@ -40,10 +42,7 @@ export const agentColumns: DatagridColumns<
     title: "CEP",
     hidden: true,
   },
-  {
-    field: "city",
-    title: "Cidade",
-  },
+
   {
     field: "complement",
     title: "Complemento",
@@ -106,10 +105,7 @@ export const agentColumns: DatagridColumns<
     hidden: true,
     title: "Raça",
   },
-  {
-    field: "state",
-    title: "Estado",
-  },
+
   {
     field: "street",
     title: "Logradouro",
@@ -138,8 +134,6 @@ export const spaceColumns: DatagridColumns<
   { field: "accessible", title: "Acessível", hidden: true },
   { field: "category", title: "Categorias", hidden: true },
   { field: "cep", title: "CEP" },
-  { field: "city", title: "Cidade" },
-  { field: "closingHours", title: "Horário de fechamento", hidden: true },
   { field: "complement", title: "Complemento", hidden: true },
   { field: "cpf_or_cpnj", title: "CPF/CPNJ", hidden: true },
   {
@@ -191,26 +185,14 @@ export const spaceColumns: DatagridColumns<
     title: "Instagram",
     hidden: true,
   },
-  {
-    field: "lat",
-    title: "Latitude",
-    hidden: true,
-  },
-  {
-    field: "long",
-    title: "Longitude",
-    hidden: true,
-  },
+  { field: "lat", title: "Latitude", hidden: true },
+  { field: "lng", title: "Longitude", hidden: true },
   {
     field: "neighborhood",
     title: "Bairro",
     hidden: true,
   },
-  {
-    field: "openingHours",
-    title: "Horário de abertura",
-    hidden: true,
-  },
+
   {
     field: "privateEmail",
     title: "Email de cadastro",
@@ -236,10 +218,7 @@ export const spaceColumns: DatagridColumns<
     title: "Telefone público alternativo",
     hidden: true,
   },
-  {
-    field: "state",
-    title: "Estado",
-  },
+
   {
     field: "street",
     title: "Logradouro",
@@ -270,19 +249,17 @@ export const eventColumns: DatagridColumns<
 >[] = [
   { field: "categories", title: "Categorias", hidden: true },
   { field: "cep", title: "CEP" },
-  { field: "city", title: "Cidade" },
   { field: "complement", title: "Complemento", hidden: true },
   { field: "eventType", title: "Tipo de evento" },
   { field: "eventURL", title: "Site do evento", hidden: true },
   { field: "neighborhood", title: "Bairro", hidden: true },
   { field: "privatePhone", title: "Telefone para contato" },
   { field: "publicPhone", title: "Telefone opcional", hidden: true },
-  { field: "state", title: "Estado" },
   { field: "street", title: "Logradouro", hidden: true },
   { field: "streetNumber", title: "Número da rua", hidden: true },
   { field: "website", title: "Website", hidden: true },
   { field: "lat", title: "Latitude", hidden: true },
-  { field: "long", title: "Longitudade", hidden: true },
+  { field: "lng", title: "Longitude", hidden: true },
   { field: "status", title: "Status" },
   {
     field: "view",

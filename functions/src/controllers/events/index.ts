@@ -20,7 +20,6 @@ export const createEvent = async (
 
   try {
     const geocodeData = await getGeoCode(req.body.cep);
-    const transactionUUID = nanoid();
 
     const { lat, lng } =
       geocodeData.results?.[0]?.geometry?.location ?? "Not found";
@@ -30,7 +29,6 @@ export const createEvent = async (
       lat: lat,
       lng: lng,
       status: "ANÁLISE",
-      uuid: transactionUUID,
     });
 
     res.status(200).send("Event created successfully");

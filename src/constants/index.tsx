@@ -236,10 +236,31 @@ export const agentColumns: DatagridColumns<
           value: rowData.phoneNumber,
           label: "Número de telefone",
         },
+        {
+          value: rowData.professionalRecord,
+          label: "Registro profissional",
+        },
+        {
+          value: rowData.race,
+          label: "Raça/cor",
+        },
+        {
+          value: rowData.gender,
+          label: "Gênero/orientação sexual",
+        },
+        {
+          value: rowData.lat,
+          label: "Latitude",
+        },
+        {
+          value: rowData.lng,
+          label: "Longitude",
+        },
       ];
 
       return (
         <ConnectedButton
+          resourceEmail={rowData.registrationEmail}
           resourceName={"Agente cultural"}
           fieldsData={fieldsInternal}
         />

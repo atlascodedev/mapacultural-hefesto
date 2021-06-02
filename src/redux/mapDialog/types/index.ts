@@ -6,6 +6,7 @@ interface MapDialogSetupFields {
   payload: {
     fields: MapDialogFields[];
     activeResource: string;
+    activeResourceEmail: string;
   };
 }
 
@@ -40,6 +41,7 @@ export interface MapDialogState {
   open: boolean;
   fields: MapDialogFields[];
   activeResource: string;
+  activeResourceEmail: string;
 }
 
 export interface MapDialogFields {

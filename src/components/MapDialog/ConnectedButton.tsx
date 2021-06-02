@@ -13,16 +13,18 @@ import { MapDialogFields } from "../../redux/mapDialog/types";
 export interface IConnectedButton extends MapDialogButtonReduxProps {
   fieldsData: MapDialogFields[];
   resourceName: string;
+  resourceEmail: string;
 }
 
 const ConnectedButton = ({
   fieldsData,
   setFields,
   resourceName,
+  resourceEmail,
 }: IConnectedButton) => {
   return (
     <div
-      onClick={() => setFields(fieldsData, resourceName)}
+      onClick={() => setFields(fieldsData, resourceName, resourceEmail)}
       style={{
         display: "flex",
         justifyContent: "center",

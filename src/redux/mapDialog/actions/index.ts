@@ -22,13 +22,15 @@ export const mapDialogClose = (): MapDialogVisibilityActionTypes => {
 
 export const mapSetupFields = (
   fields: MapDialogFields[],
-  activeResource: string
+  activeResource: string,
+  activeResourceEmail: string
 ): MapDialogFieldsActionTypes => {
   return {
     type: MAP_DIALOG_SETUP_FIELDS,
     payload: {
       fields: fields,
       activeResource: activeResource,
+      activeResourceEmail: activeResourceEmail,
     },
   };
 };

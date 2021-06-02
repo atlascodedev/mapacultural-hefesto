@@ -10,6 +10,7 @@ const initialState: MapDialogState = {
   open: false,
   fields: [],
   activeResource: "",
+  activeResourceEmail: "",
 };
 
 const mapDialogReducer = (
@@ -23,6 +24,7 @@ const mapDialogReducer = (
         open: true,
         fields: action.payload.fields,
         activeResource: action.payload.activeResource,
+        activeResourceEmail: action.payload.activeResourceEmail,
       };
 
     case MAP_DIALOG_VISIBILITY_SHOW:

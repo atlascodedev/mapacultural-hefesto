@@ -11,7 +11,7 @@ const Root = styled.div`
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
   height: 90%;
   border-radius: 8px;
-  overflow: hidden;
+  overflow-y: scroll;
   z-index: 5000;
 
   /* Make the container acts as the viewport to allow for fixed child relative to parent */

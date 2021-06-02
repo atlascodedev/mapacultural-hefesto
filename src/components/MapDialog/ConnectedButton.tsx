@@ -20,6 +20,7 @@ const ConnectedButton = ({
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        cursor: "pointer",
       }}
     >
       <SvgIcon component={Settings} />

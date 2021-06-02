@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { nanoid } from "nanoid";
 import { IAgentModel, RegistrationStatus } from "../../@types/project";
 import { AGENT_COLLECTION_REF } from "../../constants";
 import { db } from "../../firebase";
@@ -19,6 +20,8 @@ export const createAgent = async (
   try {
     const geocodeData = await getGeoCode(req.body.cep);
 
+    const transactionUUID = nanoid();
+
     const { lat, lng } =
       geocodeData.results?.[0]?.geometry?.location ?? "Not found";
 
@@ -27,6 +30,7 @@ export const createAgent = async (
       lat: lat,
       lng: lng,
       status: "ANÁLISE",
+      uuid: transactionUUID,
     });
 
     res.status(200).send("Agent created successfully");

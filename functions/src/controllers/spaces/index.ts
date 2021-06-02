@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { nanoid } from "nanoid";
 import { ICulturalSpaceModel, RegistrationStatus } from "../../@types/project";
 import { SPACE_COLLECTON_REF } from "../../constants";
 import { db } from "../../firebase";
@@ -17,6 +18,8 @@ export const createSpace = async (
   try {
     const geocodeData = await getGeoCode(req.body.cep);
 
+    const transactionUUID = nanoid();
+
     const { lat, lng } =
       geocodeData.results?.[0]?.geometry?.location ?? "Not found";
 
@@ -25,6 +28,7 @@ export const createSpace = async (
       lat: lat,
       lng: lng,
       status: "ANÁLISE",
+      uuid: transactionUUID,
     } as ICulturalSpaceModel & { lat: string; lng: string; status: string });
 
     res.status(200).send("Cultural space created successfully");

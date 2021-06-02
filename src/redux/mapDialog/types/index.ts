@@ -7,6 +7,7 @@ interface MapDialogSetupFields {
     fields: MapDialogFields[];
     activeResource: string;
     activeResourceEmail: string;
+    activeResourceUUID: string;
   };
 }
 
@@ -42,6 +43,7 @@ export interface MapDialogState {
   fields: MapDialogFields[];
   activeResource: string;
   activeResourceEmail: string;
+  activeResourceUUID: string;
 }
 
 export interface MapDialogFields {

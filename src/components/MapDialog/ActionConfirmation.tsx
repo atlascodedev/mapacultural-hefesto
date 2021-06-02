@@ -18,6 +18,8 @@ const Root = styled.div`
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
   overflow: hidden;
   border-radius: 8px;
+  overflow-y: scroll;
+
   display: flex;
   flex-direction: column;
 

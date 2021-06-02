@@ -11,6 +11,7 @@ const initialState: MapDialogState = {
   fields: [],
   activeResource: "",
   activeResourceEmail: "",
+  activeResourceUUID: "",
 };
 
 const mapDialogReducer = (

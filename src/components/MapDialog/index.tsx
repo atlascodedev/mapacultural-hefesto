@@ -1,3 +1,4 @@
+import { TextField } from "@material-ui/core";
 import React from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../../redux";
@@ -16,6 +17,7 @@ const MapDialog = ({
   open,
   activeResource,
   fields,
+  activeResourceEmail,
 }: IMapDialog) => {
   const [approveDialogState, setApproveDialogState] =
     React.useState<boolean>(false);
@@ -23,7 +25,10 @@ const MapDialog = ({
   const [refuseDialogState, setRefuseDialogState] =
     React.useState<boolean>(false);
 
+  const [refusalReason, setRefusalReason] = React.useState<string>("");
+
   console.log(fields);
+  console.log(activeResourceEmail);
   return (
     <div>
       <AtlasBackdrop closeFn={closeDialog} open={open}>
@@ -37,6 +42,7 @@ const MapDialog = ({
             {fields.map((value, index) => {
               return (
                 <div
+                  key={index}
                   style={{
                     display: "flex",
                     flexDirection: "column",
@@ -63,7 +69,22 @@ const MapDialog = ({
         closeFn={() => setApproveDialogState(false)}
         open={approveDialogState}
       >
-        <div>holiday</div>
+        <div
+          style={{
+            display: "flex",
+            padding: "30px",
+            justifyContent: "center",
+            textAlign: "center",
+            alignItems: "center",
+            height: "100%",
+          }}
+        >
+          <div style={{ fontSize: "1.5rem" }}>
+            Um e-mail será enviado do usuário notificando-o sobre sua aprovação
+            deste para participar do Mapeamento Cultural de Taquara como{" "}
+            <span>{activeResource.toLocaleLowerCase()}</span>.
+          </div>
+        </div>
       </MapDialogActionConfirmation>
 
       <MapDialogActionConfirmation
@@ -72,7 +93,36 @@ const MapDialog = ({
         closeFn={() => setRefuseDialogState(false)}
         open={refuseDialogState}
       >
-        <div>holiday</div>
+        <div
+          style={{
+            display: "flex",
+            padding: "30px",
+            justifyContent: "center",
+            textAlign: "center",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "20px",
+            height: "100%",
+          }}
+        >
+          <div style={{ fontSize: "1rem" }}>
+            Um e-mail será enviado do usuário notificando-o sobre sua reprovação
+            deste para participar do Mapeamento Cultural de Taquara como{" "}
+            <span>{activeResource.toLocaleLowerCase()}</span>. Você pode também
+            enviar uma razão adicional para o inscrito digitando-a na caixa de
+            texto abaixo.
+          </div>
+
+          <TextField
+            fullWidth
+            variant="outlined"
+            multiline
+            style={{ paddingBottom: "1em", paddingTop: "1em" }}
+            rows={4}
+            value={refusalReason}
+            onChange={(event) => setRefusalReason(event.target.value)}
+          />
+        </div>
       </MapDialogActionConfirmation>
     </div>
   );
@@ -82,6 +132,7 @@ const mapStateToProps = (rootState: RootState) => ({
   open: rootState.mapDialog.open,
   fields: rootState.mapDialog.fields,
   activeResource: rootState.mapDialog.activeResource,
+  activeResourceEmail: rootState.mapDialog.activeResourceEmail,
 });
 
 const mapDispatchToProps = {

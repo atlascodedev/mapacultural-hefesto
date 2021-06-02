@@ -172,7 +172,7 @@ export const agentColumns: DatagridColumns<
   {
     field: "view",
     title: "",
-    render: (rowData: IAgentModelAPIData) => {
+    render: (rowData: IAgentModelAPIData & { uuid: string }) => {
       let fieldsInternal: MapDialogFields[] = [
         { value: rowData.agentType, label: "Tipo de agente" },
         { value: rowData.fullName, label: "Nome completo" },
@@ -260,6 +260,7 @@ export const agentColumns: DatagridColumns<
 
       return (
         <ConnectedButton
+          resourceUUID={rowData.uuid}
           resourceEmail={rowData.registrationEmail}
           resourceName={"Agente cultural"}
           fieldsData={fieldsInternal}

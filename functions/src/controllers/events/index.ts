@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { nanoid } from "nanoid";
 import { RegistrationStatus } from "../../../../src/@types/project";
 import { IEventModel } from "../../@types/project";
 import { EVENT_COLLECTION_REF } from "../../constants";
@@ -19,6 +20,7 @@ export const createEvent = async (
 
   try {
     const geocodeData = await getGeoCode(req.body.cep);
+    const transactionUUID = nanoid();
 
     const { lat, lng } =
       geocodeData.results?.[0]?.geometry?.location ?? "Not found";
@@ -28,6 +30,7 @@ export const createEvent = async (
       lat: lat,
       lng: lng,
       status: "ANÁLISE",
+      uuid: nanoid(),
     });
 
     res.status(200).send("Event created successfully");

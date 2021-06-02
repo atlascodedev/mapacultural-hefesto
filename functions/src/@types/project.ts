@@ -156,3 +156,5 @@ export interface ICulturalSpaceAPIData extends ICulturalSpaceModel {
   long: string;
   status: any;
 }
+
+export type RegistrationStatus = "ANÁLISE" | "APROVADO" | "NEGADO";

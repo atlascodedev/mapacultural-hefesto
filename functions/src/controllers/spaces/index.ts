@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { ICulturalSpaceModel } from "../../@types/project";
+import { ICulturalSpaceModel, RegistrationStatus } from "../../@types/project";
 import { SPACE_COLLECTON_REF } from "../../constants";
 import { db } from "../../firebase";
 import getGeoCode from "../../helper/geocode";
@@ -43,7 +43,15 @@ export const getCulturalSpaces = async (req: Request, res: Response) => {
       culturalSpaceArrayInternal.push(docRef.data() as ICulturalSpaceModel);
     });
 
-    return res.status(200).json(culturalSpaceArrayInternal);
+    const approvedData = (
+      culturalSpaceArrayInternal as Array<
+        ICulturalSpaceModel & { status: RegistrationStatus }
+      >
+    ).filter((value, index) => {
+      return value.status === "APROVADO";
+    });
+
+    return res.status(200).json(approvedData);
   } catch (error) {
     return res.status(500).json({ error: error });
   }

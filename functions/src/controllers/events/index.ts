@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { RegistrationStatus } from "../../../../src/@types/project";
 import { IEventModel } from "../../@types/project";
 import { EVENT_COLLECTION_REF } from "../../constants";
 import { db } from "../../firebase";
@@ -45,7 +46,13 @@ export const getEvents = async (req: Request, res: Response) => {
       eventArrayInternal.push(docRef.data() as IEventModel);
     });
 
-    return res.status(200).json(eventArrayInternal);
+    const approvedData = (
+      eventArrayInternal as Array<IEventModel & { status: RegistrationStatus }>
+    ).filter((value, index) => {
+      return value.status === "APROVADO";
+    });
+
+    return res.status(200).json(approvedData);
   } catch (error) {
     return res.status(500).json({ error: error });
   }

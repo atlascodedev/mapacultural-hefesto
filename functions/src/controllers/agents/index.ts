@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { IAgentModel } from "../../@types/project";
+import { IAgentModel, RegistrationStatus } from "../../@types/project";
 import { AGENT_COLLECTION_REF } from "../../constants";
 import { db } from "../../firebase";
 import getGeoCode from "../../helper/geocode";
@@ -45,7 +45,13 @@ export const getAgents = async (req: Request, res: Response) => {
       agentArrayInternal.push(docRef.data());
     });
 
-    return res.status(200).json(agentArrayInternal);
+    const approvedData = (
+      agentArrayInternal as Array<IAgentModel & { status: RegistrationStatus }>
+    ).filter((value, index) => {
+      return value.status === "APROVADO";
+    });
+
+    return res.status(200).json(approvedData);
   } catch (error) {
     res.send(400).json({ error: error });
   }

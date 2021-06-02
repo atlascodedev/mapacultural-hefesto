@@ -22,6 +22,7 @@ import {
   spaceColumns,
   SPACE_COLLECTON_REF,
 } from "../../../../constants";
+import MapDialog from "../../../MapDialog";
 
 interface Props extends RouteComponentProps {}
 
@@ -34,6 +35,7 @@ const DashboardRoutes = ({ location, navigate, path, uri }: Props) => {
       <CategoryDialog />
       <EntryCreation />
       <EntryView />
+      <MapDialog />
       <AppLayout>
         <Router id="dashboardContent">
           {collections.map(

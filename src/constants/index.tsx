@@ -8,6 +8,8 @@ import {
   IEventModelAPIData,
 } from "../@types/project";
 import { DatagridColumns } from "../components/DataCreation";
+import ConnectedButton from "../components/MapDialog/ConnectedButton";
+import { useAppDispatch } from "../hooks/useAppDispatch";
 
 const baseURL: string =
   process.env.NODE_ENV !== "production"
@@ -173,18 +175,7 @@ export const agentColumns: DatagridColumns<
     field: "view",
     title: "",
     render: (rowData: IAgentModelAPIData) => {
-      return (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            cursor: "pointer",
-          }}
-        >
-          <SvgIcon component={Settings} />
-        </div>
-      );
+      return <ConnectedButton />;
     },
   },
 ];

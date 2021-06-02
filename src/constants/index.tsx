@@ -1,3 +1,4 @@
+import { Avatar, Chip } from "@material-ui/core";
 import Axios from "axios";
 import {
   IAgentModelAPIData,
@@ -124,6 +125,45 @@ export const agentColumns: DatagridColumns<
   {
     field: "status",
     title: "Status",
+    render: (rowData: IAgentModelAPIData) => {
+      if (rowData.status === "ANÁLISE") {
+        return (
+          <Chip
+            label="Em análise"
+            clickable
+            style={{
+              backgroundColor: "#FF9800",
+              color: "white",
+              fontWeight: 500,
+            }}
+          />
+        );
+      } else if (rowData.status === "NEGADO") {
+        return (
+          <Chip
+            label="Reprovado"
+            clickable
+            style={{
+              backgroundColor: "#F44336",
+              color: "#fff",
+              fontWeight: 500,
+            }}
+          />
+        );
+      } else {
+        return (
+          <Chip
+            label="Aprovado"
+            clickable
+            style={{
+              backgroundColor: "#2CD283",
+              color: "#FFF",
+              fontWeight: 500,
+            }}
+          />
+        );
+      }
+    },
   },
 ];
 
@@ -237,6 +277,45 @@ export const spaceColumns: DatagridColumns<
   {
     field: "status",
     title: "Status",
+    render: (rowData: IAgentModelAPIData) => {
+      if (rowData.status === "ANÁLISE") {
+        return (
+          <Chip
+            label="Em análise"
+            clickable
+            style={{
+              backgroundColor: "#FF9800",
+              color: "white",
+              fontWeight: 500,
+            }}
+          />
+        );
+      } else if (rowData.status === "NEGADO") {
+        return (
+          <Chip
+            label="Reprovado"
+            clickable
+            style={{
+              backgroundColor: "#F44336",
+              color: "#fff",
+              fontWeight: 500,
+            }}
+          />
+        );
+      } else {
+        return (
+          <Chip
+            label="Aprovado"
+            clickable
+            style={{
+              backgroundColor: "#2CD283",
+              color: "#FFF",
+              fontWeight: 500,
+            }}
+          />
+        );
+      }
+    },
   },
   {
     field: "view",
@@ -260,7 +339,49 @@ export const eventColumns: DatagridColumns<
   { field: "website", title: "Website", hidden: true },
   { field: "lat", title: "Latitude", hidden: true },
   { field: "lng", title: "Longitude", hidden: true },
-  { field: "status", title: "Status" },
+  {
+    field: "status",
+    title: "Status",
+    render: (rowData: IAgentModelAPIData) => {
+      if (rowData.status === "ANÁLISE") {
+        return (
+          <Chip
+            label="Em análise"
+            clickable
+            style={{
+              backgroundColor: "#FF9800",
+              color: "white",
+              fontWeight: 500,
+            }}
+          />
+        );
+      } else if (rowData.status === "NEGADO") {
+        return (
+          <Chip
+            label="Reprovado"
+            clickable
+            style={{
+              backgroundColor: "#F44336",
+              color: "#fff",
+              fontWeight: 500,
+            }}
+          />
+        );
+      } else {
+        return (
+          <Chip
+            label="Aprovado"
+            clickable
+            style={{
+              backgroundColor: "#2CD283",
+              color: "#FFF",
+              fontWeight: 500,
+            }}
+          />
+        );
+      }
+    },
+  },
   {
     field: "view",
     title: "Ação",

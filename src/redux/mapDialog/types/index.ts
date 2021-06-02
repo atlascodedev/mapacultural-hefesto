@@ -1,3 +1,45 @@
+export const MAP_RESOURCE_REFUSE_START = "MAP_RESOURCE_REFUSE_START";
+export const MAP_RESOURCE_REFUSE_SUCCESS = "MAP_RESOURCE_REFUSE_SUCCESS";
+export const MAP_RESOURCE_REFUSE_FAIL = "MAP_RESOURCE_REFUSE_FAIL";
+
+interface MapResourceRefuseStart {
+  type: typeof MAP_RESOURCE_REFUSE_START;
+}
+
+interface MapResourceRefuseSuccess {
+  type: typeof MAP_RESOURCE_REFUSE_SUCCESS;
+}
+
+interface MapResourceRefuseFail {
+  type: typeof MAP_RESOURCE_REFUSE_FAIL;
+}
+
+export type MapResourceRefuseActionTypes =
+  | MapResourceRefuseStart
+  | MapResourceRefuseSuccess
+  | MapResourceRefuseFail;
+
+export const MAP_RESOURCE_APPROVE_START = "MAP_RESOURCE_APPROVE_START";
+export const MAP_RESOURCE_APPROVE_SUCCESS = "MAP_RESOURCE_APPROVE_SUCCESS";
+export const MAP_RESOURCE_APPROVE_FAIL = "MAP_RESOURCE_APPROVE_FAIL";
+
+interface MapResourceApproveStart {
+  type: typeof MAP_RESOURCE_APPROVE_START;
+}
+
+interface MapResourceApproveSuccess {
+  type: typeof MAP_RESOURCE_APPROVE_SUCCESS;
+}
+
+interface MapResourceApproveFail {
+  type: typeof MAP_RESOURCE_APPROVE_FAIL;
+}
+
+export type MapResourceApproveActionTypes =
+  | MapResourceApproveStart
+  | MapResourceApproveSuccess
+  | MapResourceApproveFail;
+
 export const MAP_DIALOG_SETUP_FIELDS = "MAP_DIALOG_SETUP_FIELDS";
 export const MAP_DIALOG_DISCARD_FIELDS = "MAP_DIALOG_DISCARD_FIELDS";
 
@@ -36,7 +78,9 @@ export type MapDialogVisibilityActionTypes =
 
 export type MapDialogActionTypes =
   | MapDialogVisibilityActionTypes
-  | MapDialogFieldsActionTypes;
+  | MapDialogFieldsActionTypes
+  | MapResourceApproveActionTypes
+  | MapResourceRefuseActionTypes;
 
 export interface MapDialogState {
   open: boolean;

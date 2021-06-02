@@ -30,7 +30,7 @@ export const createEvent = async (
       lat: lat,
       lng: lng,
       status: "ANÁLISE",
-      uuid: nanoid(),
+      uuid: transactionUUID,
     });
 
     res.status(200).send("Event created successfully");

@@ -1,15 +1,13 @@
-import { Chip, SvgIcon } from "@material-ui/core";
-import { Settings } from "@material-ui/icons";
+import { Chip } from "@material-ui/core";
 import Axios from "axios";
 import {
-  IAgentModel,
   IAgentModelAPIData,
   ICulturalSpaceAPIData,
   IEventModelAPIData,
 } from "../@types/project";
 import { DatagridColumns } from "../components/DataCreation";
 import ConnectedButton from "../components/MapDialog/ConnectedButton";
-import { useAppDispatch } from "../hooks/useAppDispatch";
+import { MapDialogFields } from "../redux/mapDialog/types";
 
 const baseURL: string =
   process.env.NODE_ENV !== "production"
@@ -175,7 +173,77 @@ export const agentColumns: DatagridColumns<
     field: "view",
     title: "",
     render: (rowData: IAgentModelAPIData) => {
-      return <ConnectedButton />;
+      let fieldsInternal: MapDialogFields[] = [
+        { value: rowData.agentType, label: "Tipo de agente" },
+        { value: rowData.fullName, label: "Nome completo" },
+        {
+          value: new Date(rowData.birthday_or_founding).toLocaleDateString(
+            "pt-br"
+          ),
+          label: "Data de nascimento/fundação",
+        },
+        {
+          value: rowData.categories.map((value, index) => {
+            return <div key={index}> {value} </div>;
+          }),
+          label: "Categorias",
+        },
+        {
+          value: rowData.cep,
+          label: "CEP",
+        },
+        {
+          value: rowData.complement,
+          label: "Complemento",
+        },
+        {
+          value: rowData.cpf_or_cnpj,
+          label: "CPF/CNPJ",
+        },
+        {
+          value: rowData.neighborhood,
+          label: "Bairro",
+        },
+        {
+          value: rowData.street,
+          label: "Logradouro",
+        },
+        {
+          value: rowData.streetNumber,
+          label: "Número",
+        },
+        {
+          value: rowData.registrationEmail,
+          label: "E-mail de cadastro",
+        },
+        {
+          value: rowData.publicEmail,
+          label: "E-mail público",
+        },
+        {
+          value: rowData.facebook,
+          label: "Facebook",
+        },
+        {
+          value: rowData.instagram,
+          label: "Instagram",
+        },
+        {
+          value: rowData.website,
+          label: "Website",
+        },
+        {
+          value: rowData.phoneNumber,
+          label: "Número de telefone",
+        },
+      ];
+
+      return (
+        <ConnectedButton
+          resourceName={"Agente cultural"}
+          fieldsData={fieldsInternal}
+        />
+      );
     },
   },
 ];

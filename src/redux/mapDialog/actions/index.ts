@@ -1,4 +1,5 @@
 import {
+  MapDialogFields,
   MapDialogFieldsActionTypes,
   MapDialogVisibilityActionTypes,
   MAP_DIALOG_DISCARD_FIELDS,
@@ -20,7 +21,7 @@ export const mapDialogClose = (): MapDialogVisibilityActionTypes => {
 };
 
 export const mapSetupFields = (
-  fields: Array<{ label: string; value: any }>,
+  fields: MapDialogFields[],
   activeResource: string
 ): MapDialogFieldsActionTypes => {
   return {

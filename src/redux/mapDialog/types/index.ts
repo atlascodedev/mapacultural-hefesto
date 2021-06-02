@@ -4,7 +4,7 @@ export const MAP_DIALOG_DISCARD_FIELDS = "MAP_DIALOG_DISCARD_FIELDS";
 interface MapDialogSetupFields {
   type: typeof MAP_DIALOG_SETUP_FIELDS;
   payload: {
-    fields: Array<{ label: string; value: any }>;
+    fields: MapDialogFields[];
     activeResource: string;
   };
 }
@@ -38,6 +38,11 @@ export type MapDialogActionTypes =
 
 export interface MapDialogState {
   open: boolean;
-  fields: Array<{ label: string; value: any }>;
+  fields: MapDialogFields[];
   activeResource: string;
+}
+
+export interface MapDialogFields {
+  label: string;
+  value: any;
 }

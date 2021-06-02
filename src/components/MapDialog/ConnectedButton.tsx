@@ -3,19 +3,26 @@ import { Settings } from "@material-ui/icons";
 import React from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { RootState } from "../../redux";
-import { mapDialogClose, mapDialogOpen } from "../../redux/mapDialog/actions";
+import {
+  mapDialogClose,
+  mapDialogOpen,
+  mapSetupFields,
+} from "../../redux/mapDialog/actions";
+import { MapDialogFields } from "../../redux/mapDialog/types";
 
-export interface IConnectedButton extends MapDialogButtonReduxProps {}
+export interface IConnectedButton extends MapDialogButtonReduxProps {
+  fieldsData: MapDialogFields[];
+  resourceName: string;
+}
 
 const ConnectedButton = ({
-  openDialog,
-  closeDialog,
-  open,
+  fieldsData,
+  setFields,
+  resourceName,
 }: IConnectedButton) => {
-  console.log(open);
   return (
     <div
-      onClick={openDialog}
+      onClick={() => setFields(fieldsData, resourceName)}
       style={{
         display: "flex",
         justifyContent: "center",
@@ -35,6 +42,7 @@ const mapStateToProps = (rootState: RootState) => ({
 const mapDispatchToProps = {
   openDialog: mapDialogOpen,
   closeDialog: mapDialogClose,
+  setFields: mapSetupFields,
 };
 
 const mapDialogButtonConnector = connect(mapStateToProps, mapDispatchToProps);

@@ -11,23 +11,49 @@ import MapDialogHeader from "./Header";
 
 export interface IMapDialog extends MapDialogReduxProps {}
 
-const MapDialog = ({ closeDialog, open }: IMapDialog) => {
+const MapDialog = ({
+  closeDialog,
+  open,
+  activeResource,
+  fields,
+}: IMapDialog) => {
   const [approveDialogState, setApproveDialogState] =
     React.useState<boolean>(false);
 
   const [refuseDialogState, setRefuseDialogState] =
     React.useState<boolean>(false);
 
+  console.log(fields);
   return (
     <div>
       <AtlasBackdrop closeFn={closeDialog} open={open}>
         <MapDialogBase>
-          <MapDialogHeader closeFn={closeDialog} title="Placeholder Title" />
+          <MapDialogHeader closeFn={closeDialog} title={activeResource} />
           <MapDialogActions
             approveAction={() => setApproveDialogState(true)}
             refuseAction={() => setRefuseDialogState(true)}
           />
-          <MapDialogContent></MapDialogContent>
+          <MapDialogContent>
+            {fields.map((value, index) => {
+              return (
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    textAlign: "center",
+                    gap: "10px",
+                  }}
+                >
+                  <div style={{ fontWeight: 800, fontSize: "1.25rem" }}>
+                    {value.label}
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column" }}>
+                    {value.value}
+                  </div>
+                </div>
+              );
+            })}
+          </MapDialogContent>
         </MapDialogBase>
       </AtlasBackdrop>
 
@@ -54,6 +80,8 @@ const MapDialog = ({ closeDialog, open }: IMapDialog) => {
 
 const mapStateToProps = (rootState: RootState) => ({
   open: rootState.mapDialog.open,
+  fields: rootState.mapDialog.fields,
+  activeResource: rootState.mapDialog.activeResource,
 });
 
 const mapDispatchToProps = {

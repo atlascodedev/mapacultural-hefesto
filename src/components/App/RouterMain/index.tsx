@@ -1,4 +1,4 @@
-import { Router, useNavigate } from "@reach/router";
+import { Router } from "@reach/router";
 import React from "react";
 import {
   basePath,

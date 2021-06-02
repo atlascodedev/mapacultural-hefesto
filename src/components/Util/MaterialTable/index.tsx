@@ -21,6 +21,7 @@ import Save from "@material-ui/icons/Save";
 import { db } from "../../../firebase";
 import firebaseFetch from "../../../helper/firebaseFetch";
 import { DatagridColumns } from "../../DataCreation";
+import MapDialog from "../../MapDialog";
 
 const tableIcons: any = {
   Add: forwardRef((props: any, ref: any) => <AddBox {...props} ref={ref} />),

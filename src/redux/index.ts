@@ -9,6 +9,7 @@ import { colorPickerReducer } from "./colorPicker/reducer";
 import { attributeDraftReducer } from "./attributeDraft/reducer";
 import { categoryDraftReducer } from "./categoryDraft/reducer";
 import { cardCollectionReducer } from "./special/cards/reducer";
+import mapDialogReducer from "./mapDialog/reducer";
 
 const rootReducer = combineReducers({
   auth: authenticationReducer,
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   attributeDraft: attributeDraftReducer,
   categoryDraft: categoryDraftReducer,
   cardUpdate: cardCollectionReducer,
+  mapDialog: mapDialogReducer,
 });
 
 const store = createStore(

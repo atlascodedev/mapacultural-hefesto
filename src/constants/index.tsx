@@ -1,6 +1,8 @@
-import { Avatar, Chip } from "@material-ui/core";
+import { Chip, SvgIcon } from "@material-ui/core";
+import { Settings } from "@material-ui/icons";
 import Axios from "axios";
 import {
+  IAgentModel,
   IAgentModelAPIData,
   ICulturalSpaceAPIData,
   IEventModelAPIData,
@@ -23,7 +25,7 @@ export const agentColumns: DatagridColumns<
   { field: "lat", title: "Latitude", hidden: true },
   { field: "lng", title: "Longitude", hidden: true },
   { field: "registrationEmail", title: "E-mail de cadastro" },
-  { field: "publicEmail", title: "E-mail público" },
+  { field: "publicEmail", title: "E-mail público", hidden: true },
   {
     field: "agentType",
     title: "Tipo de agente",
@@ -52,6 +54,7 @@ export const agentColumns: DatagridColumns<
   {
     field: "cpf_or_cnpj",
     title: "CPF/CPNJ",
+    hidden: true,
   },
   {
     field: "facebook",
@@ -75,6 +78,7 @@ export const agentColumns: DatagridColumns<
   {
     field: "neighborhood",
     title: "Bairro",
+    hidden: true,
   },
   {
     field: "phoneNumber",
@@ -163,6 +167,24 @@ export const agentColumns: DatagridColumns<
           />
         );
       }
+    },
+  },
+  {
+    field: "view",
+    title: "",
+    render: (rowData: IAgentModelAPIData) => {
+      return (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            cursor: "pointer",
+          }}
+        >
+          <SvgIcon component={Settings} />
+        </div>
+      );
     },
   },
 ];

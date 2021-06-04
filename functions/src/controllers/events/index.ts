@@ -19,15 +19,15 @@ export const createEvent = async (
   }
 
   try {
-    const geocodeData = await getGeoCode(req.body.cep);
+    // const geocodeData = await getGeoCode(req.body.cep);
 
-    const { lat, lng } =
-      geocodeData.results?.[0]?.geometry?.location ?? "Not found";
+    // const { lat, lng } =
+    // geocodeData.results?.[0]?.geometry?.location ?? "Not found";
 
     await db.collection(EVENT_COLLECTION_REF).add({
       ...eventData,
-      lat: lat,
-      lng: lng,
+      lat: "0000x0",
+      lng: "0000x0",
       status: "ANÁLISE",
     });
 

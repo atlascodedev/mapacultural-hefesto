@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { nanoid } from "nanoid";
-import { RegistrationStatus } from "../../../../src/@types/project";
-import { IEventModel } from "../../@types/project";
-import { EVENT_COLLECTION_REF } from "../../constants";
-import { db } from "../../firebase";
-import getGeoCode from "../../helper/geocode";
+import { RegistrationStatus } from "../../../../../src/@types/project";
+import { IEventModel } from "../../../@types/project";
+import { EVENT_COLLECTION_REF } from "../../../constants";
+import { db } from "../../../firebase";
+import getGeoCode from "../../../helper/geocode";
 
 export const createEvent = async (
   req: Request<{}, {}, IEventModel, {}>,

@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import { nanoid } from "nanoid";
-import { IAgentModel, RegistrationStatus } from "../../@types/project";
-import { AGENT_COLLECTION_REF } from "../../constants";
-import { db } from "../../firebase";
-import getGeoCode from "../../helper/geocode";
+import { IAgentModel, RegistrationStatus } from "../../../@types/project";
+import { AGENT_COLLECTION_REF } from "../../../constants";
+import { db } from "../../../firebase";
+import getGeoCode from "../../../helper/geocode";
 
 export const createAgent = async (
   req: Request<{}, {}, IAgentModel, {}>,
@@ -51,6 +51,8 @@ export const getAgents = async (req: Request, res: Response) => {
     ).filter((value, index) => {
       return value.status === "APROVADO";
     });
+
+    console.log(approvedData);
 
     return res.status(200).json(approvedData);
   } catch (error) {

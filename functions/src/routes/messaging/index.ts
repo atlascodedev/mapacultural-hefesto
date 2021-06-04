@@ -1,5 +1,5 @@
 import express, { Router } from "express";
-import { storeFormMessage } from "../../controllers/messaging";
+import { storeFormMessage } from "../../controllers/hefesto/messaging";
 const cors = require("cors");
 
 const messagingRouter: Router = express.Router();

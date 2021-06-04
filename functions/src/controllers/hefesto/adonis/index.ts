@@ -1,4 +1,4 @@
-import admin, { bucket } from "../../firebase";
+import admin, { bucket } from "../../../firebase";
 import path from "path";
 import os from "os";
 import { nanoid } from "nanoid";
@@ -9,8 +9,8 @@ import {
   adonisConfig,
   AdonisImage,
   AdonisPath,
-} from "../../config/adonis.config";
-import converToSlug from "../../helper/converToSlug";
+} from "../../../config/adonis.config";
+import converToSlug from "../../../helper/converToSlug";
 
 export const optimizeAndCreateThumbnail = async (
   req: Request,

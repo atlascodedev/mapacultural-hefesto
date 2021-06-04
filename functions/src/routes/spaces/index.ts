@@ -1,5 +1,5 @@
 import express, { Router } from "express";
-import { createSpace, getCulturalSpaces } from "../../controllers/spaces";
+import { createSpace, getCulturalSpaces } from "../../controllers/forms/spaces";
 
 const cors = require("cors");
 

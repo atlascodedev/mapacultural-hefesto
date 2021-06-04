@@ -1,5 +1,5 @@
 import express, { Request, Response, Router } from "express";
-import { optimizeAndCreateThumbnail } from "../../controllers/adonis";
+import { optimizeAndCreateThumbnail } from "../../controllers/hefesto/adonis";
 const cors = require("cors");
 
 const adonisRouter: Router = express.Router();

@@ -4,7 +4,7 @@ import {
   dispatchURL,
   eventType,
   workflowBearerKey,
-} from "../../config/workflow.config";
+} from "../../../config/workflow.config";
 
 type RequestParams = {
   eventType: string;

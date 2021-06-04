@@ -1,6 +1,6 @@
 import express, { Router } from "express";
 
-import { createAgent, getAgents } from "../../controllers/agents";
+import { createAgent, getAgents } from "../../controllers/forms/agents";
 const cors = require("cors");
 
 const agentsRouter: Router = express.Router();

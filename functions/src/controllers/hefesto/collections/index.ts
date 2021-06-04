@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { db } from "../../firebase/";
-import converToSlug from "../../helper/converToSlug";
+import { db } from "../../../firebase";
+import converToSlug from "../../../helper/converToSlug";
 
 export const getEntry = async (req: Request, res: Response) => {
   const collectionRef: string = req.params.collectionRef;

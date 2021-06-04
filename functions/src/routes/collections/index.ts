@@ -3,7 +3,7 @@ import {
   getEntry,
   getEntryByID,
   getEntryWhere,
-} from "../../controllers/collections";
+} from "../../controllers/hefesto/collections";
 const cors = require("cors");
 
 const collectionsRouter: Router = express.Router();

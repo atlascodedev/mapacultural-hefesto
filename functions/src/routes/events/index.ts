@@ -1,5 +1,5 @@
 import express, { Router } from "express";
-import { createEvent, getEvents } from "../../controllers/events";
+import { createEvent, getEvents } from "../../controllers/forms/events";
 
 const cors = require("cors");
 

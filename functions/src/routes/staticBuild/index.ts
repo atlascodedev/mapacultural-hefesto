@@ -1,6 +1,6 @@
 import { Router } from "express";
 import express from "express";
-import { staticGithubActionBuild } from "../../controllers/staticBuild";
+import { staticGithubActionBuild } from "../../controllers/hefesto/staticBuild";
 const cors = require("cors");
 
 const staticBuildRouter: Router = express.Router();

@@ -1,9 +1,12 @@
 import { Request, Response } from "express";
 import { nanoid } from "nanoid";
-import { ICulturalSpaceModel, RegistrationStatus } from "../../@types/project";
-import { SPACE_COLLECTON_REF } from "../../constants";
-import { db } from "../../firebase";
-import getGeoCode from "../../helper/geocode";
+import {
+  ICulturalSpaceModel,
+  RegistrationStatus,
+} from "../../../@types/project";
+import { SPACE_COLLECTON_REF } from "../../../constants";
+import { db } from "../../../firebase";
+import getGeoCode from "../../../helper/geocode";
 
 export const createSpace = async (
   req: Request<{}, {}, ICulturalSpaceModel, {}>,

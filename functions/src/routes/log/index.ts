@@ -1,5 +1,5 @@
 import express, { Router } from "express";
-import { logOnEntryWrite } from "../../controllers/log";
+import { logOnEntryWrite } from "../../controllers/hefesto/log";
 const cors = require("cors");
 
 const logRouter: Router = express.Router();

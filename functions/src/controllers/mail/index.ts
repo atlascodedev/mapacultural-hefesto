@@ -14,22 +14,10 @@ const atlasCodeSMTPServerTranpost = createTransport({
   },
 });
 
-const sendMail = (destinationMail: string) => {
-  let mailOptions: MailOptions = {
-    from: "Mapeamento Cultural de Taquara - Sistema",
-    to: destinationMail,
-    subject: "Inscrição - Mapeamento Cultural",
-    html: `
-    <div style="display: flex, flex-direction: column, align-items: center">
-    <h1> Retorno a respeito de sua inscrição para participar no Mapeamento Cultural de Taquara </h1>
-    </hr>
-    <h2>Infelizmente sua inscrição para participar do Mapeamento Cultural de Taquara foi rejeitada</h2>
-
-    </div>`,
-  };
-};
-
-export const acceptSubmission = async (req: Request, res: Response) => {
+export const acceptSubmission = async (
+  req: Request<{}, {}, { destinationMail: string }, {}>,
+  res: Response
+) => {
   if (!req.body?.destinationMail) {
     return res.status(400).json({
       error: "Formato inválido, é preciso fornecer um e-mail destino",
@@ -57,11 +45,14 @@ export const acceptSubmission = async (req: Request, res: Response) => {
   });
 };
 
-export const rejectSubmission = async (req: Request, res: Response) => {
+export const rejectSubmission = async (
+  req: Request<{}, {}, { destinationMail: string; reason?: string }, {}>,
+  res: Response
+) => {
   let rejectReason: string = "";
   let destinationMail: string = req.body.destinationMail;
 
-  if ((req.body?.reason as string).length > 0) {
+  if ((req.body.reason as string).length > 0 && req.body.reason) {
     rejectReason = req.body.reason;
   } else if (!req.body.destinationMail) {
     return res.status(400).json({
@@ -96,3 +87,5 @@ export const rejectSubmission = async (req: Request, res: Response) => {
     }
   });
 };
+
+export const submissionReceived = async (req: Request, res: Response) => {};

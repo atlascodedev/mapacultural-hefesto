@@ -423,7 +423,137 @@ export const spaceColumns: DatagridColumns<
   },
   {
     field: "view",
-    title: "Ação",
+    title: "",
+    render: (rowData: ICulturalSpaceAPIData & { uuid: string }) => {
+      let fieldsInternal: MapDialogFields[] = [
+        { value: rowData.culturalSpaceName, label: "Nome do espaço cultural" },
+        { value: rowData.culturalSpaceSphere, label: "Esfera" },
+        { value: rowData.accessibilityType, label: "Tipo de acessibilidade" },
+        { value: rowData.accessible, label: "Acessível" },
+        {
+          label: "Segmentos culturais",
+          value: (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              {rowData.category.map((category, index) => {
+                return <div key={index}>{category} </div>;
+              })}
+            </div>
+          ),
+        },
+        {
+          value: rowData.cep,
+          label: "CEP",
+        },
+        {
+          value: rowData.complement,
+          label: "Complemento",
+        },
+        {
+          value: rowData.cpf_or_cpnj,
+          label: "CPF/CNPJ",
+        },
+        {
+          value: rowData.culturalSpaceCapacity,
+          label: "Capacidade do local",
+        },
+        {
+          value: rowData.culturalSpaceEntry,
+          label: "Tipo de espaço",
+        },
+        {
+          value: rowData.culturalSpaceHead,
+          label: "Nome do responsável",
+        },
+        {
+          value: rowData.description,
+          label: "Descrição",
+        },
+        {
+          value: rowData.entryFee,
+          label: "Taxa de entrada",
+        },
+        {
+          value: rowData.entryTypes,
+          label: "Tipo de entrada",
+        },
+        {
+          value: rowData.facebook,
+          label: "Facebook",
+        },
+        {
+          value: rowData.instagram,
+          label: "Instagram",
+        },
+        {
+          value: rowData.lat,
+          label: "Latitude",
+        },
+        {
+          value: rowData.lng,
+          label: "Longitude",
+        },
+        {
+          value: rowData.neighborhood,
+          label: "Bairro",
+        },
+        {
+          value: rowData.privateEmail,
+          label: "E-mail de cadastro",
+        },
+        {
+          value: rowData.privatePhone,
+          label: "Telefone de cadastro",
+        },
+        {
+          value: rowData.publicEmail,
+          label: "E-mail público",
+        },
+        {
+          value: rowData.publicPhone,
+          label: "Telefone público",
+        },
+        {
+          value: rowData.publicPhoneAlt,
+          label: "Telefone público 2",
+        },
+        {
+          value: rowData.status,
+          label: "Status",
+        },
+        {
+          value: rowData.street,
+          label: "Logradouro",
+        },
+        {
+          value: rowData.streetNumber,
+          label: "Número da rua",
+        },
+        {
+          value: rowData.website,
+          label: "Website",
+        },
+        {
+          value: rowData.workingHours,
+          label: "Horário de funcionamento",
+        },
+      ];
+
+      return (
+        <ConnectedButton
+          fieldsData={fieldsInternal}
+          resourceCollection={"space"}
+          resourceEmail={rowData.privateEmail}
+          resourceName={"Espaços culturais"}
+          resourceUUID={rowData.uuid}
+        />
+      );
+    },
   },
 ];
 
@@ -488,7 +618,137 @@ export const eventColumns: DatagridColumns<
   },
   {
     field: "view",
-    title: "Ação",
+    title: "",
+    render: (rowData: IEventModelAPIData & { uuid: string }) => {
+      let fieldsInternal: MapDialogFields[] = [
+        {
+          value: (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              {rowData.categories.map((category, index) => {
+                return <div key={index}> {category} </div>;
+              })}
+            </div>
+          ),
+          label: "Categorias",
+        },
+        {
+          value: rowData.cep,
+          label: "CEP",
+        },
+        {
+          value: rowData.complement,
+          label: "Complemento",
+        },
+        {
+          value: rowData.description,
+          label: "Descrição",
+        },
+        {
+          value: rowData.endingDate,
+          label: "Data do encerramento",
+        },
+        {
+          value: rowData.startingDate,
+          label: "Data de início",
+        },
+        {
+          value: rowData.eventAgeRestriction,
+          label: "Faixa etária",
+        },
+        {
+          value: rowData.eventEntryType,
+          label: "Tipo de entrada",
+        },
+        {
+          value: rowData.eventFee,
+          label: "Valor da entrada",
+        },
+        {
+          value: rowData.eventFrequency,
+          label: "Frequência do evento",
+        },
+        {
+          value: rowData.eventHead,
+          label: "Responsável do evento",
+        },
+        {
+          value: rowData.eventName,
+          label: "Nome do evento",
+        },
+        {
+          value: rowData.eventType,
+          label: "Tipo de evento",
+        },
+        {
+          value: rowData.eventURL,
+          label: "Link do evento (virtual)",
+        },
+        {
+          value: rowData.lat,
+          label: "Latitude",
+        },
+        {
+          value: rowData.lng,
+          label: "Longitude",
+        },
+        {
+          value: rowData.neighborhood,
+          label: "Bairro",
+        },
+        {
+          value: rowData.privateEmail,
+          label: "E-mail de cadastro",
+        },
+        {
+          value: rowData.privatePhone,
+          label: "Telefone de cadastro",
+        },
+        {
+          value: rowData.publicEmail,
+          label: "E-mail público",
+        },
+        {
+          value: rowData.publicPhone,
+          label: "Telefone público",
+        },
+        {
+          value: rowData.status,
+          label: "Status",
+        },
+        {
+          value: rowData.street,
+          label: "Logradouro",
+        },
+        {
+          value: rowData.streetNumber,
+          label: "Número da rua",
+        },
+        {
+          value: rowData.website,
+          label: "Website",
+        },
+        {
+          value: rowData.workingHours,
+          label: "Horário de funcionamento",
+        },
+      ];
+
+      return (
+        <ConnectedButton
+          fieldsData={fieldsInternal}
+          resourceCollection={"event"}
+          resourceEmail={rowData.privateEmail}
+          resourceName={"Eventos"}
+          resourceUUID={rowData.uuid}
+        />
+      );
+    },
   },
 ];
 

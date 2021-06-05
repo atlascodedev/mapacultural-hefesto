@@ -1,4 +1,4 @@
-GET  http://localhost:5001/mapeamento-cultural/us-central1/api/agents
+GET  http://localhost:5001/mapeamento-cultural/us-central1/api/agentsnp
 
 
 

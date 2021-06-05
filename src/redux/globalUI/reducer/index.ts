@@ -61,6 +61,12 @@ import {
   CATEGORY_DRAFT_UPDATE_SUCCESS,
 } from "../../categoryDraft/types";
 import {
+  MapDialogActionTypes,
+  MAP_RESOURCE_APPROVE_FAIL,
+  MAP_RESOURCE_APPROVE_START,
+  MAP_RESOURCE_APPROVE_SUCCESS,
+} from "../../mapDialog/types";
+import {
   CardCollectionActionTypes,
   CardCollectionUpdateActionTypes,
   CARD_COLLECTION_CHECK_FAIL,
@@ -102,8 +108,32 @@ export const globalUIReducer = (
     | ActiveCollectionEntryUpdateActionTypes
     | AuthenticationActionTypes
     | CardCollectionUpdateActionTypes
+    | MapDialogActionTypes
 ): GlobalUIState => {
   switch (action.type) {
+    case MAP_RESOURCE_APPROVE_START:
+      return { ...state, isLoading: true };
+
+    case MAP_RESOURCE_APPROVE_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        notificationOpen: true,
+        notificationMessage:
+          "Ocorreu um erro ao tentar aprovar o inscrito, por favor atualize a página e tente novamente",
+        notificationSeverity: "error",
+      };
+
+    case MAP_RESOURCE_APPROVE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        notificationOpen: true,
+        notificationMessage:
+          "O inscrito foi aprovado com sucesso. Um e-mail notificando-o da confirmação foi enviado para o e-mail de cadastro deste.",
+        notificationSeverity: "success",
+      };
+
     case CARD_COLLECTION_UPDATE_START:
       return { ...state, isLoading: true };
 

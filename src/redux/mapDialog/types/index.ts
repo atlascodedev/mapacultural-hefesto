@@ -50,6 +50,7 @@ interface MapDialogSetupFields {
     activeResource: string;
     activeResourceEmail: string;
     activeResourceUUID: string;
+    activeResourceCollection: string;
   };
 }
 
@@ -88,6 +89,7 @@ export interface MapDialogState {
   activeResource: string;
   activeResourceEmail: string;
   activeResourceUUID: string;
+  activeResourceCollection: string;
 }
 
 export interface MapDialogFields {

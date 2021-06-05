@@ -4,6 +4,8 @@ import {
   MAP_DIALOG_SETUP_FIELDS,
   MAP_DIALOG_VISIBILITY_HIDDEN,
   MAP_DIALOG_VISIBILITY_SHOW,
+  MAP_RESOURCE_APPROVE_FAIL,
+  MAP_RESOURCE_APPROVE_SUCCESS,
 } from "../types";
 
 const initialState: MapDialogState = {
@@ -12,6 +14,7 @@ const initialState: MapDialogState = {
   activeResource: "",
   activeResourceEmail: "",
   activeResourceUUID: "",
+  activeResourceCollection: "",
 };
 
 const mapDialogReducer = (
@@ -19,6 +22,12 @@ const mapDialogReducer = (
   action: MapDialogActionTypes
 ): MapDialogState => {
   switch (action.type) {
+    case MAP_RESOURCE_APPROVE_SUCCESS:
+      return { ...initialState, open: false };
+
+    case MAP_RESOURCE_APPROVE_FAIL:
+      return { ...initialState, open: false };
+
     case MAP_DIALOG_SETUP_FIELDS:
       return {
         ...state,
@@ -26,6 +35,8 @@ const mapDialogReducer = (
         fields: action.payload.fields,
         activeResource: action.payload.activeResource,
         activeResourceEmail: action.payload.activeResourceEmail,
+        activeResourceUUID: action.payload.activeResourceUUID,
+        activeResourceCollection: action.payload.activeResourceCollection,
       };
 
     case MAP_DIALOG_VISIBILITY_SHOW:

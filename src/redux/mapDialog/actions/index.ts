@@ -2,6 +2,7 @@ import { Dispatch } from "react";
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { RootState } from "../..";
+import { API } from "../../../constants";
 import { db } from "../../../firebase";
 import {
   MapDialogFields,
@@ -33,7 +34,8 @@ export const mapSetupFields = (
   fields: MapDialogFields[],
   activeResource: string,
   activeResourceEmail: string,
-  activeResourceUUID: string
+  activeResourceUUID: string,
+  activeResourceCollection: string
 ): MapDialogFieldsActionTypes => {
   return {
     type: MAP_DIALOG_SETUP_FIELDS,
@@ -42,6 +44,7 @@ export const mapSetupFields = (
       activeResource: activeResource,
       activeResourceEmail: activeResourceEmail,
       activeResourceUUID: activeResourceUUID,
+      activeResourceCollection: activeResourceCollection,
     },
   };
 };
@@ -65,24 +68,25 @@ export const mapResourceApprove = (
       type: MAP_RESOURCE_APPROVE_START,
     });
 
-    db.collection(collection)
-      .where("uuid", "==", uuid)
-      .get()
-      .then((snapShot) => {
-        snapShot.forEach((doc) => {
-          doc.ref
-            .update({ ...doc.data(), status: "APROVADO" })
-            .then(() => {
-              dispatch({ type: MAP_RESOURCE_APPROVE_SUCCESS });
-            })
-            .catch((error) => {
-              dispatch({ type: MAP_RESOURCE_APPROVE_FAIL });
-            });
-        });
-      })
-      .catch((error) => {
-        dispatch({ type: MAP_RESOURCE_APPROVE_FAIL });
-        console.log(error);
+    console.log(collection);
+
+    try {
+      const resourceDocs = await db
+        .collection(collection)
+        .where("uuid", "==", uuid)
+        .get();
+
+      resourceDocs.forEach(async (doc) => {
+        await doc.ref.update({ ...doc.data(), status: "APROVADO" });
       });
+
+      await API.post("/mail/accept", { destinationMail: email });
+
+      dispatch({
+        type: MAP_RESOURCE_APPROVE_SUCCESS,
+      });
+    } catch (error) {
+      dispatch({ type: MAP_RESOURCE_APPROVE_FAIL });
+    }
   };
 };

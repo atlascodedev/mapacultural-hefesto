@@ -15,6 +15,7 @@ export interface IConnectedButton extends MapDialogButtonReduxProps {
   resourceName: string;
   resourceEmail: string;
   resourceUUID: string;
+  resourceCollection: string;
 }
 
 const ConnectedButton = ({
@@ -23,11 +24,18 @@ const ConnectedButton = ({
   resourceName,
   resourceEmail,
   resourceUUID,
+  resourceCollection,
 }: IConnectedButton) => {
   return (
     <div
       onClick={() =>
-        setFields(fieldsData, resourceName, resourceEmail, resourceUUID)
+        setFields(
+          fieldsData,
+          resourceName,
+          resourceEmail,
+          resourceUUID,
+          resourceCollection
+        )
       }
       style={{
         display: "flex",

@@ -264,6 +264,7 @@ export const agentColumns: DatagridColumns<
           resourceEmail={rowData.registrationEmail}
           resourceName={"Agente cultural"}
           fieldsData={fieldsInternal}
+          resourceCollection="agent"
         />
       );
     },

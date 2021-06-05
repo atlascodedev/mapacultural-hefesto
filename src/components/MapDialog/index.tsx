@@ -3,7 +3,11 @@ import React from "react";
 import { connect, ConnectedProps } from "react-redux";
 import { API } from "../../constants";
 import { RootState } from "../../redux";
-import { mapDialogClose, mapDialogOpen } from "../../redux/mapDialog/actions";
+import {
+  mapDialogClose,
+  mapDialogOpen,
+  mapResourceApprove,
+} from "../../redux/mapDialog/actions";
 import AtlasBackdrop from "../Util/AtlasBackdrop";
 import MapDialogActionConfirmation from "./ActionConfirmation";
 import MapDialogActions from "./Actions";
@@ -19,6 +23,9 @@ const MapDialog = ({
   activeResource,
   fields,
   activeResourceEmail,
+  approve,
+  activeResourceUUID,
+  activeResourceCollection,
 }: IMapDialog) => {
   const [approveDialogState, setApproveDialogState] =
     React.useState<boolean>(false);
@@ -28,8 +35,7 @@ const MapDialog = ({
 
   const [refusalReason, setRefusalReason] = React.useState<string>("");
 
-  console.log(fields);
-  console.log(activeResourceEmail);
+  console.log(activeResourceUUID);
   return (
     <div>
       <AtlasBackdrop closeFn={closeDialog} open={open}>
@@ -65,11 +71,14 @@ const MapDialog = ({
       </AtlasBackdrop>
 
       <MapDialogActionConfirmation
-        submitFn={() =>
-          API.post("/mail/accept", { destinationMail: activeResourceEmail })
-            .then((result) => console.log(result))
-            .catch((error) => console.log(error))
-        }
+        submitFn={() => {
+          approve(
+            activeResourceUUID,
+            activeResourceEmail,
+            activeResourceCollection
+          );
+          setApproveDialogState(false);
+        }}
         title={"Aprovar inscrição"}
         closeFn={() => setApproveDialogState(false)}
         open={approveDialogState}
@@ -138,11 +147,14 @@ const mapStateToProps = (rootState: RootState) => ({
   fields: rootState.mapDialog.fields,
   activeResource: rootState.mapDialog.activeResource,
   activeResourceEmail: rootState.mapDialog.activeResourceEmail,
+  activeResourceUUID: rootState.mapDialog.activeResourceUUID,
+  activeResourceCollection: rootState.mapDialog.activeResourceCollection,
 });
 
 const mapDispatchToProps = {
   closeDialog: mapDialogClose,
   openDialog: mapDialogOpen,
+  approve: mapResourceApprove,
 };
 
 const mapDialogConnector = connect(mapStateToProps, mapDispatchToProps);

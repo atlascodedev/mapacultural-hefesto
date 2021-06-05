@@ -9,6 +9,7 @@ import {
   MapDialogFieldsActionTypes,
   MapDialogVisibilityActionTypes,
   MapResourceApproveActionTypes,
+  MapResourceRefuseActionTypes,
   MAP_DIALOG_DISCARD_FIELDS,
   MAP_DIALOG_SETUP_FIELDS,
   MAP_DIALOG_VISIBILITY_HIDDEN,
@@ -16,6 +17,9 @@ import {
   MAP_RESOURCE_APPROVE_FAIL,
   MAP_RESOURCE_APPROVE_START,
   MAP_RESOURCE_APPROVE_SUCCESS,
+  MAP_RESOURCE_REFUSE_FAIL,
+  MAP_RESOURCE_REFUSE_START,
+  MAP_RESOURCE_REFUSE_SUCCESS,
 } from "../types";
 
 export const mapDialogOpen = (): MapDialogVisibilityActionTypes => {
@@ -52,6 +56,41 @@ export const mapSetupFields = (
 export const mapDiscardFields = (): MapDialogFieldsActionTypes => {
   return {
     type: MAP_DIALOG_DISCARD_FIELDS,
+  };
+};
+
+export const mapResourceReject = (
+  uuid: string,
+  email: string,
+  collection: string,
+  reason?: string
+): ThunkAction<void, RootState, unknown, Action<string>> => {
+  return async (
+    dispatch: Dispatch<MapResourceRefuseActionTypes>,
+    getState: () => RootState
+  ) => {
+    dispatch({
+      type: MAP_RESOURCE_REFUSE_START,
+    });
+
+    try {
+      const resourceDocs = await db
+        .collection(collection)
+        .where("uuid", "==", uuid)
+        .get();
+
+      resourceDocs.forEach(async (docs) => {
+        await docs.ref.update({ ...docs.data(), status: "NEGADO" });
+      });
+
+      dispatch({
+        type: MAP_RESOURCE_REFUSE_SUCCESS,
+      });
+    } catch (error) {
+      dispatch({
+        type: MAP_RESOURCE_REFUSE_FAIL,
+      });
+    }
   };
 };
 

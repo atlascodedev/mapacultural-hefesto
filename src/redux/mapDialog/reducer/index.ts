@@ -6,6 +6,8 @@ import {
   MAP_DIALOG_VISIBILITY_SHOW,
   MAP_RESOURCE_APPROVE_FAIL,
   MAP_RESOURCE_APPROVE_SUCCESS,
+  MAP_RESOURCE_REFUSE_FAIL,
+  MAP_RESOURCE_REFUSE_SUCCESS,
 } from "../types";
 
 const initialState: MapDialogState = {
@@ -27,6 +29,12 @@ const mapDialogReducer = (
 
     case MAP_RESOURCE_APPROVE_FAIL:
       return { ...initialState, open: false };
+
+    case MAP_RESOURCE_REFUSE_FAIL:
+      return { ...initialState, open: false };
+
+    case MAP_RESOURCE_REFUSE_SUCCESS:
+      return initialState;
 
     case MAP_DIALOG_SETUP_FIELDS:
       return {

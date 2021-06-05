@@ -65,6 +65,9 @@ import {
   MAP_RESOURCE_APPROVE_FAIL,
   MAP_RESOURCE_APPROVE_START,
   MAP_RESOURCE_APPROVE_SUCCESS,
+  MAP_RESOURCE_REFUSE_FAIL,
+  MAP_RESOURCE_REFUSE_START,
+  MAP_RESOURCE_REFUSE_SUCCESS,
 } from "../../mapDialog/types";
 import {
   CardCollectionActionTypes,
@@ -111,6 +114,29 @@ export const globalUIReducer = (
     | MapDialogActionTypes
 ): GlobalUIState => {
   switch (action.type) {
+    case MAP_RESOURCE_REFUSE_START:
+      return { ...state, isLoading: true };
+
+    case MAP_RESOURCE_REFUSE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        notificationOpen: true,
+        notificationMessage:
+          "O usuário foi reprovado, um e-mail notificando-o sobre sua reprovação foi enviado ao e-mail do cadastro.",
+        notificationSeverity: "success",
+      };
+
+    case MAP_RESOURCE_REFUSE_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        notificationOpen: true,
+        notificationMessage:
+          "Ocorreu um erro ao tentar reprovar o inscrito, por favor, atualize a página e tente novamente.",
+        notificationSeverity: "error",
+      };
+
     case MAP_RESOURCE_APPROVE_START:
       return { ...state, isLoading: true };
 

@@ -1,12 +1,12 @@
 import { TextField } from "@material-ui/core";
 import React from "react";
 import { connect, ConnectedProps } from "react-redux";
-import { API } from "../../constants";
 import { RootState } from "../../redux";
 import {
   mapDialogClose,
   mapDialogOpen,
   mapResourceApprove,
+  mapResourceReject,
 } from "../../redux/mapDialog/actions";
 import AtlasBackdrop from "../Util/AtlasBackdrop";
 import MapDialogActionConfirmation from "./ActionConfirmation";
@@ -26,6 +26,7 @@ const MapDialog = ({
   approve,
   activeResourceUUID,
   activeResourceCollection,
+  refuse,
 }: IMapDialog) => {
   const [approveDialogState, setApproveDialogState] =
     React.useState<boolean>(false);
@@ -102,7 +103,16 @@ const MapDialog = ({
       </MapDialogActionConfirmation>
 
       <MapDialogActionConfirmation
-        submitFn={() => console.log("ok")}
+        submitFn={() => {
+          refuse(
+            activeResourceUUID,
+            activeResourceEmail,
+            activeResourceCollection,
+            refusalReason.length > 0 ? refusalReason : undefined
+          );
+
+          setRefuseDialogState(false);
+        }}
         title={"Recusar inscrição"}
         closeFn={() => setRefuseDialogState(false)}
         open={refuseDialogState}
@@ -155,6 +165,7 @@ const mapDispatchToProps = {
   closeDialog: mapDialogClose,
   openDialog: mapDialogOpen,
   approve: mapResourceApprove,
+  refuse: mapResourceReject,
 };
 
 const mapDialogConnector = connect(mapStateToProps, mapDispatchToProps);

@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { nanoid } from "nanoid";
 import {
   ICulturalSpaceModel,
   RegistrationStatus,
@@ -33,7 +32,7 @@ export const createSpace = async (
 
     res.status(200).send("Cultural space created successfully");
   } catch (error) {
-    return res.status(400).json({ error: error });
+    return res.status(500).json({ error: error });
   }
 };
 

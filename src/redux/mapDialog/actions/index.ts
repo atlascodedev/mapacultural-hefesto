@@ -73,6 +73,8 @@ export const mapResourceReject = (
       type: MAP_RESOURCE_REFUSE_START,
     });
 
+    console.log(uuid, email, collection);
+
     try {
       const resourceDocs = await db
         .collection(collection)
@@ -83,10 +85,17 @@ export const mapResourceReject = (
         await docs.ref.update({ ...docs.data(), status: "NEGADO" });
       });
 
+      await API.post("/mail/reject", {
+        destinationMail: email,
+        reason: reason,
+      });
+
       dispatch({
         type: MAP_RESOURCE_REFUSE_SUCCESS,
       });
     } catch (error) {
+      console.log(error);
+
       dispatch({
         type: MAP_RESOURCE_REFUSE_FAIL,
       });

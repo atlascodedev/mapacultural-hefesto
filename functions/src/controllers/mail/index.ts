@@ -48,19 +48,17 @@ export const rejectSubmission = async (
   req: Request<{}, {}, { destinationMail: string; reason?: string }, {}>,
   res: Response
 ) => {
-  let rejectReason: string = "";
   let destinationMail: string = req.body.destinationMail;
 
-  if ((req.body.reason as string).length > 0 && req.body.reason) {
-    rejectReason = req.body.reason;
-  } else if (!req.body.destinationMail) {
+  if (!req.body.destinationMail) {
     return res.status(400).json({
       error:
         "Formato da requisição inválido, é necessário fornecer o e-mail do destinatário",
     });
   }
+
   let mailOptions = {
-    from: "Mapeamento Cultural de Taquara - Sistema",
+    from: "Mapeamento Cultural de Taquara - Sistema - <mapacultural@pro-cidadania.org>",
     to: destinationMail,
     subject: "Inscrição - Mapeamento Cultural",
     html: `
@@ -71,8 +69,10 @@ export const rejectSubmission = async (
     <br>
 
     ${
-      rejectReason.length > 0
-        ? `<h2> A razão pela rejeição é descrita abaixo </h2> <br> <div>${rejectReason}</div>`
+      req.body.reason!.length > 0
+        ? `<h2> A razão pela rejeição é descrita abaixo </h2> <br> <div>${
+            req.body!.reason
+          }</div>`
         : "<h2> Não foi anexada nenhuma razão específica para rejeição. </h2>"
     }
     </div>`,

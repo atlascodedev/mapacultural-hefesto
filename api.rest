@@ -1,8 +1,10 @@
-POST http://localhost:5001/mapeamento-cultural/us-central1/api/mail/accept
+POST http://localhost:5001/mapeamento-cultural/us-central1/api/mail/reject
 Content-Type: application/json
 
 {
-    "destinationMail": "alex.xande10@gmail.com"
+    "destinationMail": "alex.xande10@gmail.com",
+    "reason": ""
+    
 }
 
 

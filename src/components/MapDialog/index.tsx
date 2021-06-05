@@ -108,7 +108,7 @@ const MapDialog = ({
             activeResourceUUID,
             activeResourceEmail,
             activeResourceCollection,
-            refusalReason.length > 0 ? refusalReason : undefined
+            refusalReason
           );
 
           setRefuseDialogState(false);

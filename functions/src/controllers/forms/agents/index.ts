@@ -50,8 +50,6 @@ export const getAgents = async (req: Request, res: Response) => {
       return value.status === "APROVADO";
     });
 
-    console.log(approvedData);
-
     return res.status(200).json(approvedData);
   } catch (error) {
     res.send(400).json({ error: error });

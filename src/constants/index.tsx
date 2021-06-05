@@ -14,7 +14,7 @@ const baseURL: string =
     ? "http://localhost:5001/mapeamento-cultural/us-central1/api"
     : "https://us-central1-mapeamento-cultural.cloudfunctions.net/api";
 
-export const axiosInstance = Axios.create({
+export const API = Axios.create({
   ...Axios.defaults,
   baseURL: baseURL,
 });

@@ -9,17 +9,19 @@ const Root = styled.div`
   display: flex;
   height: 100%;
   justify-content: center;
-  overflow-y: scroll;
 `;
 
 const Grid = styled.div`
   display: grid;
   grid-auto-flow: row;
+  row-gap: 20px;
   grid-template-columns: 1fr;
-  place-items: center;
 
   @media (min-width: 1024px) {
     grid-template-columns: 1fr 1fr 1fr;
+    padding-top: 20px;
+    gap: 100px;
+    row-gap: 30px;
   }
 `;
 

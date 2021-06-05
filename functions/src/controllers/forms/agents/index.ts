@@ -1,9 +1,7 @@
 import { Request, Response } from "express";
-import { nanoid } from "nanoid";
-import { IAgentModel, RegistrationStatus } from "../../../@types/project";
+import { IAgentModel, RegistrationStatus } from "../../../typings/project";
 import { AGENT_COLLECTION_REF } from "../../../constants";
 import { db } from "../../../firebase";
-import getGeoCode from "../../../helper/geocode";
 
 export const createAgent = async (
   req: Request<{}, {}, IAgentModel, {}>,
@@ -21,7 +19,7 @@ export const createAgent = async (
     // const geocodeData = await getGeoCode(req.body.cep);
 
     // const { lat, lng } =
-    //   geocodeData.results?.[0]?.geometry?.location ?? "Not found";
+    //   geocodeData.results?.[0]?.geometry?.location ?? "Not found"
 
     await db.collection(AGENT_COLLECTION_REF).add({
       ...agentData,

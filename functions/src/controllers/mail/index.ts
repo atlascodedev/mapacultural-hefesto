@@ -1,7 +1,6 @@
 import { createTransport } from "nodemailer";
 import * as functions from "firebase-functions";
 import { Request, Response } from "express";
-import { MailOptions } from "nodemailer/lib/json-transport";
 
 const atlasCodeSMTPServerTranpost = createTransport({
   pool: true,
@@ -18,14 +17,14 @@ export const acceptSubmission = async (
   req: Request<{}, {}, { destinationMail: string }, {}>,
   res: Response
 ) => {
-  if (!req.body?.destinationMail) {
+  if (!req.body.destinationMail) {
     return res.status(400).json({
       error: "Formato inválido, é preciso fornecer um e-mail destino",
     });
   }
-  let mailOptions: MailOptions = {
-    from: "Mapeamento Cultural de Taquara - Sistema",
-    to: req.body?.destinationMail,
+  let mailOptions = {
+    from: "Mapeamento Cultural de Taquara - Sistema - <mapacultural@pro-cidadania.org>",
+    to: req.body.destinationMail,
     subject: "Inscrição - Mapeamento Cultural",
     html: `
         <div style="display: flex, flex-direction: column, align-items: center">
@@ -60,7 +59,7 @@ export const rejectSubmission = async (
         "Formato da requisição inválido, é necessário fornecer o e-mail do destinatário",
     });
   }
-  let mailOptions: MailOptions = {
+  let mailOptions = {
     from: "Mapeamento Cultural de Taquara - Sistema",
     to: destinationMail,
     subject: "Inscrição - Mapeamento Cultural",

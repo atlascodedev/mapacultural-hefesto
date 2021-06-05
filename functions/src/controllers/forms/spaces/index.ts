@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 import {
   ICulturalSpaceModel,
   RegistrationStatus,
-} from "../../../@types/project";
+} from "../../../typings/project";
 import { SPACE_COLLECTON_REF } from "../../../constants";
 import { db } from "../../../firebase";
 import getGeoCode from "../../../helper/geocode";

@@ -1,6 +1,9 @@
+POST http://localhost:5001/mapeamento-cultural/us-central1/api/mail/accept
+Content-Type: application/json
 
-
-POST https://us-central1-mapeamento-cultural.cloudfunctions.net/api/build/forge
+{
+    "destinationMail": "alex.xande10@gmail.com"
+}
 
 
 

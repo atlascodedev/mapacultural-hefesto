@@ -12,13 +12,14 @@ const Root = styled.div`
   height: 90%;
   border-radius: 8px;
   overflow-y: scroll;
+  padding-bottom: 20px;
   z-index: 5000;
 
   /* Make the container acts as the viewport to allow for fixed child relative to parent */
   transform: translateZ(0);
 
   @media (min-width: 1024px) {
-    width: 60%;
+    width: 85%;
     height: 85%;
   }
 `;

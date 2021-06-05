@@ -1,6 +1,7 @@
 import { TextField } from "@material-ui/core";
 import React from "react";
 import { connect, ConnectedProps } from "react-redux";
+import { API } from "../../constants";
 import { RootState } from "../../redux";
 import { mapDialogClose, mapDialogOpen } from "../../redux/mapDialog/actions";
 import AtlasBackdrop from "../Util/AtlasBackdrop";
@@ -64,7 +65,11 @@ const MapDialog = ({
       </AtlasBackdrop>
 
       <MapDialogActionConfirmation
-        submitFn={() => console.log("submit approval")}
+        submitFn={() =>
+          API.post("/mail/accept", { destinationMail: activeResourceEmail })
+            .then((result) => console.log(result))
+            .catch((error) => console.log(error))
+        }
         title={"Aprovar inscrição"}
         closeFn={() => setApproveDialogState(false)}
         open={approveDialogState}
@@ -88,7 +93,7 @@ const MapDialog = ({
       </MapDialogActionConfirmation>
 
       <MapDialogActionConfirmation
-        submitFn={() => console.log("submit denial")}
+        submitFn={() => console.log("ok")}
         title={"Recusar inscrição"}
         closeFn={() => setRefuseDialogState(false)}
         open={refuseDialogState}

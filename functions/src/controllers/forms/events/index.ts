@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { nanoid } from "nanoid";
-import { RegistrationStatus } from "../../../../../src/@types/project";
-import { IEventModel } from "../../../@types/project";
+import { IEventModel, RegistrationStatus } from "../../../typings/project";
 import { EVENT_COLLECTION_REF } from "../../../constants";
 import { db } from "../../../firebase";
 import getGeoCode from "../../../helper/geocode";

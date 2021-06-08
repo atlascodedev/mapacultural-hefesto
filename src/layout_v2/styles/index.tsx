@@ -613,7 +613,7 @@ export const AppLayoutRoot = ({
             >
               <SvgIcon component={Notifications} />
             </div>
-            <SvgIcon onClick={() => appInfoToggle(true)} component={Help} />
+            {/* <SvgIcon onClick={() => appInfoToggle(true)} component={Help} /> */}
             <SvgIcon onClick={() => profileToggle(true)} component={Person} />
           </AppLayoutUpperbarIconContainer>
         </AppLayoutUpperbar>
@@ -629,10 +629,10 @@ export const AppLayoutRoot = ({
         anchorRef={notificationsAnchorElement}
         handleClose={removeNotificationAnchorRef}
       />
-      <AppInfo
+      {/* <AppInfo
         handleCloseFn={() => appInfoToggle(false)}
         isOpen={appInfoState}
-      />
+      /> */}
     </AppLayoutRootContainer>
   );
 };

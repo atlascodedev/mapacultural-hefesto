@@ -4,8 +4,14 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  SvgIcon,
 } from "@material-ui/core";
-import { Person } from "@material-ui/icons";
+import {
+  AssignmentInd,
+  EventAvailable,
+  Person,
+  Room,
+} from "@material-ui/icons";
 import styled from "styled-components";
 import React from "react";
 import IconComponent from "../../components/Util/IconComponent";
@@ -78,6 +84,60 @@ const LayoutDrawer = ({ open, toggleDrawer, logo, sidebarItems }: Props) => {
               </ListItem>
             );
           })}
+          <ListItem
+            onClick={() => toggleDrawer(false)}
+            component={Link}
+            to={`/${basePath}/${dashboardPath}/eventos`}
+            style={{ padding: "10px", paddingLeft: "20px" }}
+            alignItems="center"
+          >
+            <ListItemIcon>
+              <SvgIcon component={EventAvailable} />
+            </ListItemIcon>
+
+            <ListItemText
+              style={{ color: path === "eventos" ? "#F15D3C" : "initial" }}
+            >
+              Eventos
+            </ListItemText>
+          </ListItem>
+          <ListItem
+            onClick={() => toggleDrawer(false)}
+            component={Link}
+            to={`/${basePath}/${dashboardPath}/agentes`}
+            style={{ padding: "10px", paddingLeft: "20px" }}
+            alignItems="center"
+          >
+            <ListItemIcon>
+              <SvgIcon component={AssignmentInd} />
+            </ListItemIcon>
+
+            <ListItemText
+              style={{ color: path === "agentes" ? "#F15D3C" : "initial" }}
+            >
+              Agentes
+            </ListItemText>
+          </ListItem>
+
+          <ListItem
+            onClick={() => toggleDrawer(false)}
+            component={Link}
+            to={`/${basePath}/${dashboardPath}/espacos-culturais`}
+            style={{ padding: "10px", paddingLeft: "20px" }}
+            alignItems="center"
+          >
+            <ListItemIcon>
+              <SvgIcon component={Room} />
+            </ListItemIcon>
+
+            <ListItemText
+              style={{
+                color: path === "espacos-culturais" ? "#F15D3C" : "initial",
+              }}
+            >
+              Espaços culturais
+            </ListItemText>
+          </ListItem>
         </List>
       </SwipeableDrawer>
     </div>

@@ -23,6 +23,7 @@ import {
   SPACE_COLLECTON_REF,
 } from "../../../../constants";
 import MapDialog from "../../../MapDialog";
+import MapLocalizationDialog from "../../../MapLocalizationDialog";
 
 interface Props extends RouteComponentProps {}
 
@@ -36,6 +37,8 @@ const DashboardRoutes = ({ location, navigate, path, uri }: Props) => {
       <EntryCreation />
       <EntryView />
       <MapDialog />
+      <MapLocalizationDialog />
+
       <AppLayout>
         <Router id="dashboardContent">
           {collections.map(

@@ -1,9 +1,7 @@
 import { Request, Response } from "express";
-import { nanoid } from "nanoid";
 import { IEventModel, RegistrationStatus } from "../../../typings/project";
 import { EVENT_COLLECTION_REF } from "../../../constants";
 import { db } from "../../../firebase";
-import getGeoCode from "../../../helper/geocode";
 
 export const createEvent = async (
   req: Request<{}, {}, IEventModel, {}>,
@@ -13,9 +11,9 @@ export const createEvent = async (
     ...req.body,
   };
 
-  if (!req.body.cep) {
-    return res.status(400).json({ error: "Um CEP válido é obrigatório" });
-  }
+  // if (typeof req.body.cep !== "undefined") {
+  //   return res.status(400).json({ error: "Um CEP válido é obrigatório" });
+  // }
 
   try {
     // const geocodeData = await getGeoCode(req.body.cep);

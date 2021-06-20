@@ -7,6 +7,7 @@ import {
 } from "../@types/project";
 import { DatagridColumns } from "../components/DataCreation";
 import ConnectedButton from "../components/MapDialog/ConnectedButton";
+import LocalizeConnectedButton from "../components/MapLocalizationDialog/LocalizeConnectedButton";
 import { MapDialogFields } from "../redux/mapDialog/types";
 
 const baseURL: string =
@@ -272,7 +273,7 @@ export const agentColumns: DatagridColumns<
 ];
 
 export const spaceColumns: DatagridColumns<
-  ICulturalSpaceAPIData & { view: any }
+  ICulturalSpaceAPIData & { view: any; localize: any }
 >[] = [
   { field: "accessibilityType", title: "Tipo de acessibilidade", hidden: true },
   { field: "accessible", title: "Acessível", hidden: true },
@@ -419,6 +420,13 @@ export const spaceColumns: DatagridColumns<
           />
         );
       }
+    },
+  },
+  {
+    field: "localize",
+    title: "",
+    render: (rowData: ICulturalSpaceAPIData & { uuid: string }) => {
+      return <LocalizeConnectedButton resourceUUID={rowData.uuid} />;
     },
   },
   {

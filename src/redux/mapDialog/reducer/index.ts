@@ -4,6 +4,10 @@ import {
   MAP_DIALOG_SETUP_FIELDS,
   MAP_DIALOG_VISIBILITY_HIDDEN,
   MAP_DIALOG_VISIBILITY_SHOW,
+  MAP_LOCATE_UPDATE_FAIL,
+  MAP_LOCATE_UPDATE_SUCCESS,
+  MAP_LOCATE_VISIBILITY_HIDDEN,
+  MAP_LOCATE_VISIBILITY_SHOW,
   MAP_RESOURCE_APPROVE_FAIL,
   MAP_RESOURCE_APPROVE_SUCCESS,
   MAP_RESOURCE_REFUSE_FAIL,
@@ -17,6 +21,7 @@ const initialState: MapDialogState = {
   activeResourceEmail: "",
   activeResourceUUID: "",
   activeResourceCollection: "",
+  locateOpen: false,
 };
 
 const mapDialogReducer = (
@@ -24,6 +29,22 @@ const mapDialogReducer = (
   action: MapDialogActionTypes
 ): MapDialogState => {
   switch (action.type) {
+    case MAP_LOCATE_UPDATE_FAIL:
+      return { ...state };
+
+    case MAP_LOCATE_UPDATE_SUCCESS:
+      return { ...initialState };
+
+    case MAP_LOCATE_VISIBILITY_SHOW:
+      return {
+        ...initialState,
+        locateOpen: true,
+        activeResourceUUID: action.payload.uuid,
+      };
+
+    case MAP_LOCATE_VISIBILITY_HIDDEN:
+      return { ...initialState, locateOpen: false };
+
     case MAP_RESOURCE_APPROVE_SUCCESS:
       return { ...initialState, open: false };
 

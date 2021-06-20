@@ -8,12 +8,19 @@ import {
   MapDialogFields,
   MapDialogFieldsActionTypes,
   MapDialogVisibilityActionTypes,
+  MapLocateUpdateActionTypes,
+  MapLocateVisibilityActionTypes,
   MapResourceApproveActionTypes,
   MapResourceRefuseActionTypes,
   MAP_DIALOG_DISCARD_FIELDS,
   MAP_DIALOG_SETUP_FIELDS,
   MAP_DIALOG_VISIBILITY_HIDDEN,
   MAP_DIALOG_VISIBILITY_SHOW,
+  MAP_LOCATE_UPDATE_FAIL,
+  MAP_LOCATE_UPDATE_START,
+  MAP_LOCATE_UPDATE_SUCCESS,
+  MAP_LOCATE_VISIBILITY_HIDDEN,
+  MAP_LOCATE_VISIBILITY_SHOW,
   MAP_RESOURCE_APPROVE_FAIL,
   MAP_RESOURCE_APPROVE_START,
   MAP_RESOURCE_APPROVE_SUCCESS,
@@ -135,6 +142,58 @@ export const mapResourceApprove = (
       });
     } catch (error) {
       dispatch({ type: MAP_RESOURCE_APPROVE_FAIL });
+    }
+  };
+};
+
+export const mapLocateDialogOpen = (
+  uuid: string
+): MapLocateVisibilityActionTypes => {
+  return {
+    type: MAP_LOCATE_VISIBILITY_SHOW,
+    payload: {
+      uuid: uuid,
+    },
+  };
+};
+
+export const maplocateDialogClose = (): MapLocateVisibilityActionTypes => {
+  return {
+    type: MAP_LOCATE_VISIBILITY_HIDDEN,
+  };
+};
+
+export const mapLocateUpdate = (
+  lat: string,
+  lng: string
+): ThunkAction<void, RootState, unknown, Action<string>> => {
+  return async (
+    dispatch: Dispatch<MapLocateUpdateActionTypes>,
+    getState: () => RootState
+  ) => {
+    dispatch({
+      type: MAP_LOCATE_UPDATE_START,
+    });
+
+    const { mapDialog } = getState();
+
+    const activeResourceUUID = mapDialog.activeResourceUUID;
+
+    try {
+      const activeResourceData = await db
+        .collection("space")
+        .where("uuid", "==", activeResourceUUID)
+        .get();
+
+      activeResourceData.forEach(async (doc) => {
+        await doc.ref.update({ lat: lat, lng: lng });
+      });
+
+      dispatch({ type: MAP_LOCATE_UPDATE_SUCCESS });
+    } catch (error) {
+      console.log(error);
+
+      dispatch({ type: MAP_LOCATE_UPDATE_FAIL });
     }
   };
 };

@@ -1,3 +1,42 @@
+export const MAP_LOCATE_VISIBILITY_SHOW = "MAP_LOCATE_VISIBILITY_SHOW";
+export const MAP_LOCATE_VISIBILITY_HIDDEN = "MAP_LOCATE_VISIBILITY_HIDDEN";
+
+interface MapLocateVisibilityShow {
+  type: typeof MAP_LOCATE_VISIBILITY_SHOW;
+  payload: {
+    uuid: string;
+  };
+}
+
+interface MapLocateVisibilityHidden {
+  type: typeof MAP_LOCATE_VISIBILITY_HIDDEN;
+}
+
+export type MapLocateVisibilityActionTypes =
+  | MapLocateVisibilityShow
+  | MapLocateVisibilityHidden;
+
+export const MAP_LOCATE_UPDATE_START = "MAP_LOCATE_UPDATE_START";
+export const MAP_LOCATE_UPDATE_FAIL = "MAP_LOCATE_UPDATE_FAIL";
+export const MAP_LOCATE_UPDATE_SUCCESS = "MAP_LOCATE_UPDATE_SUCCESS";
+
+interface MapLocateUpdateStart {
+  type: typeof MAP_LOCATE_UPDATE_START;
+}
+
+interface MapLocateUpdateSuccess {
+  type: typeof MAP_LOCATE_UPDATE_SUCCESS;
+}
+
+interface MapLocateUpdateFail {
+  type: typeof MAP_LOCATE_UPDATE_FAIL;
+}
+
+export type MapLocateUpdateActionTypes =
+  | MapLocateUpdateStart
+  | MapLocateUpdateSuccess
+  | MapLocateUpdateFail;
+
 export const MAP_RESOURCE_REFUSE_START = "MAP_RESOURCE_REFUSE_START";
 export const MAP_RESOURCE_REFUSE_SUCCESS = "MAP_RESOURCE_REFUSE_SUCCESS";
 export const MAP_RESOURCE_REFUSE_FAIL = "MAP_RESOURCE_REFUSE_FAIL";
@@ -81,7 +120,9 @@ export type MapDialogActionTypes =
   | MapDialogVisibilityActionTypes
   | MapDialogFieldsActionTypes
   | MapResourceApproveActionTypes
-  | MapResourceRefuseActionTypes;
+  | MapResourceRefuseActionTypes
+  | MapLocateVisibilityActionTypes
+  | MapLocateUpdateActionTypes;
 
 export interface MapDialogState {
   open: boolean;
@@ -90,6 +131,7 @@ export interface MapDialogState {
   activeResourceEmail: string;
   activeResourceUUID: string;
   activeResourceCollection: string;
+  locateOpen: boolean;
 }
 
 export interface MapDialogFields {

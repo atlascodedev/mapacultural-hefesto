@@ -62,6 +62,9 @@ import {
 } from "../../categoryDraft/types";
 import {
   MapDialogActionTypes,
+  MAP_LOCATE_UPDATE_FAIL,
+  MAP_LOCATE_UPDATE_START,
+  MAP_LOCATE_UPDATE_SUCCESS,
   MAP_RESOURCE_APPROVE_FAIL,
   MAP_RESOURCE_APPROVE_START,
   MAP_RESOURCE_APPROVE_SUCCESS,
@@ -114,6 +117,28 @@ export const globalUIReducer = (
     | MapDialogActionTypes
 ): GlobalUIState => {
   switch (action.type) {
+    case MAP_LOCATE_UPDATE_START:
+      return { ...state, isLoading: true };
+
+    case MAP_LOCATE_UPDATE_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        notificationOpen: true,
+        notificationSeverity: "success",
+        notificationMessage:
+          "A latitude e longitude do recurso foi atualizada com sucesso, não esqueça de atualizar o website para ver as mudanças",
+      };
+
+    case MAP_LOCATE_UPDATE_FAIL:
+      return {
+        ...state,
+        isLoading: false,
+        notificationOpen: true,
+        notificationMessage:
+          "Ocorreu um erro durante a tentativa de atualizar a latitude e longitude do recurso. Por favor, recarregue a página e tente novamente. Se o erro persistir, entre em contato com o suporte.",
+      };
+
     case MAP_RESOURCE_REFUSE_START:
       return { ...state, isLoading: true };
 

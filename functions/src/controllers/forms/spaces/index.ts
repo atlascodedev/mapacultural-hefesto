@@ -18,10 +18,12 @@ export const createSpace = async (
   }
 
   try {
-    const geocodeData = await getGeoCode(req.body.cep);
+    // const geocodeData = await getGeoCode(req.body.cep);
 
-    const { lat, lng } =
-      geocodeData.results?.[0]?.geometry?.location ?? "Not found";
+    // const { lat, lng } =
+    //   geocodeData.results?.[0]?.geometry?.location ?? "Not found";
+
+    const [lat, lng] = ["0x0000", "0x0000"];
 
     await db.collection(SPACE_COLLECTON_REF).add({
       ...spaceData,

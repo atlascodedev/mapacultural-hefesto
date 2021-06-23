@@ -257,6 +257,10 @@ export const agentColumns: DatagridColumns<
           value: rowData.lng,
           label: "Longitude",
         },
+        {
+          value: rowData.description,
+          label: "Descrição",
+        },
       ];
 
       return (
